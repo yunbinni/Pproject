@@ -1,6 +1,7 @@
 package ybc.spring.mvc.vo;
 
 public class Member {
+    protected String mno;
     protected String name;
     protected String birth;
     protected String userid;
@@ -10,6 +11,14 @@ public class Member {
     protected String favorite1;
     protected String favorite2;
     protected String favorite3;
+
+    public String getMno() {
+        return mno;
+    }
+
+    public void setMno(String mno) {
+        this.mno = mno;
+    }
 
     public String getName() {
         return name;
