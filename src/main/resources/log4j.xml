@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+
+    <!--
+        로깅 시스템 라이브러리 : log4j2
+        소프트웨어의 이벤트를 기록함으로써
+        소프트웨어의 동작상태를 파악하고
+        문제가 발생했을때 이것을 알아봄으로써
+        소프트웨어의 문제를 찾아내고 해결하기 위해 고안됨
+
+        SLF4J : 다른 로깅 라이브러리와 연계해서 사용
+               일종의 도우미 라이브러리
+
+        log4J : 로그 프레임워크의 초반 개념 설정
+
+        logback : 국내에서 많이 사용하는 로그 프레임워크
+                  log4J의 성능 개선버젼
+
+        log4J2 : 가장 최근에 나온 로그 프레임워크
+                 log4J, logback에 비해 성능이 많이 개선
+
+        로그 레벨 : debug > warning > info
+        로그 레벨에 따라 출력하는 내용의 디테일 존재
+
+    -->
+
+    <!-- 로그 출력 형태를 정의 -->
+    <!-- %-5p : 오른정렬, 5자여백, 로그레벨 출력 -->
+    <!-- %c : 로그 대상 클래스명 출력 -->
+    <!-- %m : 로그 실제 메세지 출력 -->
+    <!-- %n : 줄바꿈 출력 -->
+    <Properties>
+        <!-- <Property name="layoutPattern">%d [%t] %-5level %c(%M:%L) - %m%n</Property> -->
+        <Property name="layoutPattern">%-5p : %c - %m%n</Property>
+    </Properties>
+
+    <!-- 로그의 출력 위치 지정 -->
+    <!-- console : 화면 -->
+    <!-- file : 외부 파일 -->
+    <!-- DB, JDBC : 데이터베이스 -->
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${layoutPattern}" />
+        </Console>
+    </Appenders>
+
+    <!-- 기본 레벨은 info -->
+    <Loggers>
+        <Root level="info" additivity="false" >
+            <AppenderRef ref="console" />
+        </Root>
+
+        <!-- 스프링 프레임워크에서 찍는건 level을 info로 설정 -->
+        <logger name="org.springframework.*" additivity="false" >
+            <AppenderRef ref="console" level="info" />
+        </logger>
+
+        <logger name="org.apache.ibatis.*" additivity="false" >
+            <AppenderRef ref="console" level="info" />
+        </logger>
+
+        <logger name="org.mybatis.*" additivity="false" >
+            <AppenderRef ref="console" level="debug" />
+        </logger>
+
+        <Logger name="org.springframework.jdbc.core.JdbcTemplate"
+                level="debug" />
+
+        <Logger name="org.springframework.jdbc.core.StatementCreatorUtils"
+                level="trace" />
+
+        <logger name="siestageek.spring.mvc.*" additivity="false" >
+            <AppenderRef ref="console" level="info" />
+        </logger>
+
+    </Loggers>
+</Configuration>

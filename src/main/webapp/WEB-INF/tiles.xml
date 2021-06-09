@@ -1,0 +1,23 @@
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+    <!-- 변하지 않는 페이지 레이아웃은 템플릿 형태로 정의 -->
+    <definition name="base" template="/WEB-INF/tiles/template.jsp">
+        <put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+    </definition>
+
+    <!-- 메인영역에 보여줄 페이지를 요청방법에 따라 구분해서 정의 -->
+    <!-- 메인영역을 제외한 나머지 영역은 위에서 정의한 템플릿을 참조함 -->
+    <definition extends="base" name="*.tiles">
+        <put-attribute name="main" value="/WEB-INF/views/{1}.jsp"/>
+    </definition>
+
+    <definition extends="base" name="*/*.tiles">
+        <put-attribute name="main" value="/WEB-INF/views/{1}/{2}.jsp"/>
+    </definition>
+
+</tiles-definitions>
