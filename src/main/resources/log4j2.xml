@@ -69,7 +69,7 @@
         <Logger name="org.springframework.jdbc.core.StatementCreatorUtils"
                 level="trace" />
 
-        <logger name="siestageek.spring.mvc.*" additivity="false" >
+        <logger name="ybc.spring.mvc.*" additivity="false" >
             <AppenderRef ref="console" level="info" />
         </logger>
 

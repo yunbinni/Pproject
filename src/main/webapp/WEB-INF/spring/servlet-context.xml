@@ -43,5 +43,5 @@
         <property name="order" value="1" />
     </bean>
 
-    <context:component-scan base-package="yunbinni.spring" />
+    <context:component-scan base-package="ybc.spring.mvc" />
 </beans>
