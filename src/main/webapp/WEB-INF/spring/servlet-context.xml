@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-                http://www.springframework.org/schema/beans/spring-beans.xsd
-                http://www.springframework.org/schema/context
-                https://www.springframework.org/schema/context/spring-context.xsd
-                http://www.springframework.org/schema/mvc
-                https://www.springframework.org/schema/mvc/spring-mvc.xsd">
-
-    <!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!-- Enables the Spring MVC @Controller programming model -->
     <mvc:annotation-driven />
@@ -19,10 +13,35 @@
     <mvc:resources mapping="/**" location="/resources/" />
 
     <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/views/" />
-        <property name="suffix" value=".jsp" />
+    <!--    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+            <property name="prefix" value="/WEB-INF/views/" />
+            <property name="suffix" value=".jsp" />
+            <property name="order" value="2" />  타일즈 뷰 리졸버보다 후순위
+        </bean> -->
+
+    <!-- Tiles Settings -->
+    <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+        <property name="definitions">
+            <list>
+                <value>/WEB-INF/tiles.xml</value>
+            </list>
+        </property>
     </bean>
 
+    <!-- Tiles View Resolver Settings -->
+    <bean id="tilesViewResolver"
+          class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
+        <property name="order" value="1" />
+    </bean>
+
+
+    <!-- 파일업로드 리졸버 설정 : 자료실/갤러리 예제에 사용 -->
+    <!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="10485760" /> 10MB 제한
+    </bean>-->
+
+
     <context:component-scan base-package="ybc.spring.mvc" />
+
 </beans>
