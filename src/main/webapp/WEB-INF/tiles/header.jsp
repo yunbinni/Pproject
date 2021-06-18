@@ -36,7 +36,7 @@
         <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
         <li class="nav-item"><a class="nav-link" href="#">회원가입</a></li>
         <li class="nav-item"><a class="nav-link" href="#">커뮤니티</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">주차장찾기</a></li>
+        <li class="nav-item"><a class="nav-link" href="/Park/list">주차장찾기</a></li>
         <li class="nav-item"><a class="nav-link" href="#">내 정보</a></li>
         <li class="nav-item"><a class="nav-link" href="#">문의사항</a></li>
     </ul>
