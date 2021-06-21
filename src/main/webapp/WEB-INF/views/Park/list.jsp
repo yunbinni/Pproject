@@ -9,8 +9,8 @@
 <div class="row m-3 input-group rounded" id="schbox" name="schbox">
     <div class="row form-group">
         <select>
-            <option>어떤조건으로 검색하게끔</option>
-            <option>할까요?</option>
+            <option>--상세조건--</option>
+            <option>주소</option>
         </select>
     </div>
 
