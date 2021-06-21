@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+
+    <select id="selectBoard" statementType="PREPARED"
+            parameterType="int"
+            resultType="ybc.spring.mvc.vo.Board">
+        select bdno, title, userid, regdate, views, likes from Pboard
+        order by bdno desc limit #{snum}, 20
+    </select>
+    
+    <select id="countBoard" statementType="PREPARED"
+            resultType="int">
+        select count(bdno) cnt from Pboard
+    </select>
+
+    <insert id="insertBoard" statementType="PREPARED"
+            parameterType="ybc.spring.mvc.vo.Board">
+        insert into Pboard(title, userid, contents)
+        values (#{title}, #{userid}, #{contents})
+    </insert>
+
+    <select id="selectOne" statementType="PREPARED"
+            parameterType="String" resultType="ybc.spring.mvc.vo.Board">
+        select * from Pboard where bdno = #{bdno}
+    </select>
+    
+    <update id="viewsBoard" statementType="PREPARED"
+            parameterType="String">
+        update Pboard set views = views + 1 where bdno = #{bdno}
+    </update>
+
+    <!-- 동적 질의문으로 검색 기능 구현 -->
+    <!-- 단, 컬럼명이나 테이블 명에는 #{} 가 아닌 ${} 를 사용 -->
+    <select id="findSelect" statementType="PREPARED"
+            parameterType="map" resultType="ybc.spring.mvc.vo.Board">
+        select bdno, title, userid, regdate, views, likes from Pboard
+        <if test="ftype != 'titcont'">
+        where ${ftype} like concat('%', #{fkey}, '%')</if>
+        <if test="ftype == 'titcont'">
+        where title = concat('%', #{fkey}, '%') or contents = concat('%', #{fkey}, '%')</if>
+        order by bdno desc limit #{snum}, 20
+    </select>
+
+    <select id="findSelectCount" statementType="PREPARED"
+            parameterType="map" resultType="int">
+        select count(bdno) from Pboard
+        <if test="ftype != 'titcont'">
+            where ${ftype} like concat('%', #{fkey}, '%')</if>
+        <if test="ftype == 'titcont'">
+            where title = concat('%', #{fkey}, '%') or contents = concat('%', #{fkey}, '%')</if>
+    </select>
+
+</mapper>

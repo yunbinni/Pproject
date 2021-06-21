@@ -3,22 +3,22 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     <!-- dbcp 설정 -->
-<!--    <bean id="dbcpDataSource"-->
-<!--          class="org.apache.commons.dbcp2.BasicDataSource"-->
-<!--          p:driverClassName="org.mariadb.jdbc.Driver"-->
-<!--          p:url="jdbc:mariadb://bigdata.c0n0wa0hno7m.ap-northeast-2.rds.amazonaws.com:3306/playground"-->
-<!--          p:username="yunbinni" p:password="dbsqls9049"-->
-<!--          p:initialSize="10" p:maxTotal="7"-->
-<!--          p:maxIdle="3" />-->
+    <bean id="dbcpDataSource"
+          class="org.apache.commons.dbcp2.BasicDataSource"
+          p:driverClassName="org.mariadb.jdbc.Driver"
+          p:url="jdbc:mariadb://bigdata.cgeutq0tfbai.ap-northeast-2.rds.amazonaws.com:3306/playground"
+          p:username="playground" p:password="bigdata2020"
+          p:initialSize="10" p:maxTotal="7"
+          p:maxIdle="3" />
 
-<!--    &lt;!&ndash; myBatis 설정 &ndash;&gt;-->
-<!--    <bean id="sqlSessionFactory"-->
-<!--          class="org.mybatis.spring.SqlSessionFactoryBean"-->
-<!--          p:dataSource-ref="dbcpDataSource"-->
-<!--          p:mapperLocations="classpath:mybatis3/*Mapper.xml" />-->
+    <!-- myBatis 설정 -->
+    <bean id="sqlSessionFactory"
+          class="org.mybatis.spring.SqlSessionFactoryBean"
+          p:dataSource-ref="dbcpDataSource"
+          p:mapperLocations="classpath:mybatis3/*Mapper.xml" />
 
-<!--    <bean id="sqlSession"-->
-<!--          class="org.mybatis.spring.SqlSessionTemplate">-->
-<!--        <constructor-arg ref="sqlSessionFactory" index="0" />-->
-<!--    </bean>-->
+    <bean id="sqlSession"
+          class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg ref="sqlSessionFactory" index="0" />
+    </bean>
 </beans>
