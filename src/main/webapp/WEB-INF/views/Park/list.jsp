@@ -2,8 +2,7 @@
 
 <%-- 지도 부분(kakao) --%>
 <div id="map" class="row m-3" style="height:500px;"></div>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d5de2f58e2eedf30ed86a815506ae35e"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d5de2f58e2eedf30ed86a815506ae35e&libraries=clusterer"></script>
 
 <%-- 검색박스 부분(서치박스, search box) --%>
 <div class="row m-3 input-group rounded" id="schbox" name="schbox">
