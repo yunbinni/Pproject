@@ -51,4 +51,10 @@
             where title = concat('%', #{fkey}, '%') or contents = concat('%', #{fkey}, '%')</if>
     </select>
 
+    <update id="updateBoard" statementType="PREPARED"
+            parameterType="ybc.spring.mvc.vo.Board">
+        update Pboard set title = #{title}, contents = #{contents}
+        where bdno = #{bdno}
+    </update>
+
 </mapper>

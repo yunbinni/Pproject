@@ -21,7 +21,7 @@ public class BoardDAOImpl implements BoardDAO{
 
     @Override
     public int updateBoard(Board b) {
-        return 0;
+        return sqlSession.update("board.updateBoard", b);
     }
 
     @Override

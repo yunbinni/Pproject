@@ -43,12 +43,12 @@ $('#findbtn').on('click', function () {
 
 // new board reply
 $('#newbrbtn').on('click', function () {
-    if ($('#reple').val() == "") {
+    if ($('#contents').val() == "") {
         alert('댓글을 작성하세요!')
     } else {
         const frm = $('#replefrm');
         frm.attr('method', 'post');
-        frm.attr('action', '/reply/write');
+        frm.attr('action', '/reple/write');
         frm.submit();
     }
 });
@@ -66,7 +66,22 @@ $('#newrrpbtn').on('click', function () {
     } else {
         const frm = $('#rpfrm');
         frm.attr('method', 'post');
-        frm.attr('action', '/rreply/write');
+        frm.attr('action', '/rreple/write');
+        frm.submit();
+    }
+});
+
+$('#modbdbtn').on('click', function () {
+    location.href = '/board/update?bdno=' + $('#bdno').val();
+});
+
+// update board
+$('#modboard').on('click', function () {
+    if (grecaptcha.getResponse() == '') { alert('자동가입방지를 체크하세요') }
+    else {
+        const frm = $('#modbdfrm');
+        frm.attr('method', 'post');
+        frm.attr('action', '/board/update');
         frm.submit();
     }
 });

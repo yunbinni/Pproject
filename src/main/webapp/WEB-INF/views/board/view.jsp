@@ -7,7 +7,11 @@
 " scope="application" />
 
 <!-- 세션 임의로 생성해서 테스트 -->
+<%
+    HttpSession sess = request.getSession();
 
+    sess.setAttribute("UID", "anrdl3294");
+%>
 
 <div class="container mt-5">
     <div>
@@ -24,14 +28,14 @@
                     <!-- Post title-->
                     <h1 class="fw-bolder mb-1">${bd.title}</h1>
                     <!-- Post meta content-->
-                    <div class="text-muted fst-italic mb-2">${bd.regdate}</div>
+                    <div class="text-muted fst-italic mb-2">${fn:substring(bd.regdate, 0, 19)}</div>
                     <!-- Post categories-->
                     <span class="text-muted fst-italic">작성자 ${bd.userid} / </span>
                     <span class="text-muted fst-italic">조회수 ${bd.views} / </span>
                     <span class="text-muted fst-italic">추천수 ${bd.likes} / </span>
                     <c:if test="${not empty UID and UID eq bd.userid}">
                         <span style="float: right">
-                            <button type="button" class="btn btn-warning text-white">
+                            <button type="button" class="btn btn-warning text-white" id="modbdbtn">
                                 <i class="fas fa-edit"></i> 수정하기</button>
                             <button type="button" class="btn btn-danger">
                                 <i class="fas fa-trash-alt"></i> 삭제하기</button>
@@ -43,6 +47,7 @@
                 <!-- Post content-->
                 <section class="mb-5">
                     <p class="fs-5 mb-4">${fn:replace(bd.contents, newChar, "<br>")}</p>
+                    <input type="hidden" id="bdno" value="${param.bdno}">
                 </section>
             </article>
             <!-- Comments section-->
@@ -57,34 +62,36 @@
                             <input type="hidden" name="bdno" value="${param.bdno}">
                         </form>
                         <!-- Comment with nested comments-->
-                        <div class="d-flex mb-4">
-                            <c:forEach var="r" items="${rps}">
+                        <c:forEach var="r" items="${rps}">
+                            <div class="d-flex mb-4 col-mid-5">
                                 <c:if test="${r.rno eq r.rpno}">
                                     <!-- Parent comment-->
-                                    <span><i class="fas fa-comment"></i></span>&nbsp;&nbsp;
-                                    <div class="ms-3">
-                                        <div class="fw-bold">${r.userid} / ${r.regdate}
-                                            <span style="float: right">
+                                    <div class="ms-3" style="width: 600px; margin-top: 10px;">
+                                        <span><i class="fas fa-comment"></i></span>&nbsp;&nbsp;
+                                        <span class="fw-bold">${r.userid} / <span class="text-muted">${fn:substring(r.regdate, 0, 19)}</span>
+                                            <span style= "float: right; text-align: right">
                                                 <c:if test="${not empty UID}"><a href="javascript:addReply('${r.rno}')"> [추가]</a> </c:if>
-                                                <c:if test="${UID eq r.userid}">[수정] [삭제]</c:if></span></div>
-                                        </div>
-                                    <p>${r.contents}</p>
+                                                <c:if test="${UID eq r.userid}">[수정] [삭제]</c:if>
+                                            </span>
+                                        </span>
+                                        <p>${r.contents}</p>
+                                    </div>
                                 </c:if>
                                 <c:if test="${r.rno ne r.rpno}">
                                     <!-- Child comment 1-->
-                                    <div class="d-flex mt-4 offset-1">
-                                        <span><i class="far fa-comments"></i></span>&nbsp;&nbsp;
-                                        <div class="ms-3">
-                                            <div class="fw-bold">${r.userid} / ${r.regdate}
-                                                <span style="float: right">
+                                    <div class="d-flex offset-1">
+                                        <div class="ms-3" style="width: 600px">
+                                            <span><i class="far fa-comments"></i></span>&nbsp;&nbsp;
+                                            <span class="fw-bold">${r.userid} / <span class="text-muted">${fn:substring(r.regdate, 0, 19)}</span>
+                                                <span style="float: right; text-align: right">
                                                 <c:if test="${UID eq r.userid}">[수정] [삭제]</c:if></span>
-                                            </div>
+                                            </span>
                                             <p>${r.contents}</p>
                                         </div>
                                     </div>
                                 </c:if>
-                            </c:forEach>
-                        </div>
+                            </div>
+                        </c:forEach>
                     </div>
                 </div>
             </section>
@@ -141,7 +148,7 @@
             </div>
             <div class="modal-body">
                 <form name="rpfrm" id="rpfrm" class="well form-inline">
-					<textarea name="reple" id="rreple" rows="8"
+					<textarea name="contents" id="rreple" rows="8"
                               cols="75" class=""></textarea>
                     <input type="hidden" name="userid" value="${UID}">
                     <input type="hidden" name="bdno" value="${param.bdno}">

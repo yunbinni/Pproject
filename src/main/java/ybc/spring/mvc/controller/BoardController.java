@@ -54,14 +54,12 @@ public class BoardController {
     public String writeok(Board bd) {
         String returnPage = "redirect:/board/list";
 
-        if(bsrv.newBoard(bd)) {
-            System.out.println("입력완료!");
-        }
+        bsrv.newBoard(bd);
 
         return returnPage;
     }
 
-    // 게시판 검색 기능 구현
+    // 게시판 검색
     @GetMapping("/board/find")
     public ModelAndView find(ModelAndView mv, String cp,
                              String findtype, String findkey) {
@@ -73,7 +71,7 @@ public class BoardController {
         return mv;
     }
 
-    // 댓글쓰기 구현
+    // 댓글
     @PostMapping("/reple/write")
     public String repleok(Reple r) {
         String returnPage = "redirect:/board/view?bdno="+r.getBdno();
@@ -83,7 +81,7 @@ public class BoardController {
         return returnPage;
     }
 
-    // 대댓글쓰기 구현
+    // 대댓글
     @PostMapping("/rreple/write")
     public String rrepleok(Reple r) {
         String returnPage = "redirect:/board/view?bdno="+r.getBdno();
@@ -91,6 +89,24 @@ public class BoardController {
         brsrv.newReple(r);
 
         return returnPage;
+    }
+
+    // 게시글 수정
+    @GetMapping("/board/update")
+    public ModelAndView update(ModelAndView mv, String bdno) {
+
+        mv.setViewName("board/update.tiles");
+        mv.addObject("b", bsrv.readOneBoard(bdno));
+
+        return mv;
+    }
+
+    @PostMapping("/board/update")
+    public String updateok(Board b) {
+
+        bsrv.modifyBoard(b);
+
+        return "redirect:/board/list";
     }
 }
 

@@ -10,7 +10,7 @@
     <div>
         <h2><i class="fas fa-list"> 자유 게시판</i></h2>
         <hr>
-    </div><!-- 페이지 타이틀 -->
+    </div>
 
     <div class="row">
         <div class="col-5 offset-1">
@@ -23,13 +23,13 @@
     </div>
 
     <div class="card card-body bg-light col-10 offset-1">
-        <form name="boardfrm" id="boardfrm">
+        <form name="modbdfrm" id="modbdfrm">
             <div class="form-group row">
                 <label for="title"
                        class="col-form-label col-2 text-right text-danger">
                     제목</label>
                 <input type="text" name="title" id="title"
-                       class="form-control col-9 border-danger">
+                       class="form-control col-9 border-danger" value="${b.title}">
             </div>
 
             <div class="form-group row">
@@ -37,7 +37,7 @@
                        class="col-form-label col-2 text-right text-danger">
                     작성자</label>
                 <input type="text" name="userid" id="userid"
-                       class="form-control col-9 border-danger" value="${UID}" readonly>
+                       class="form-control col-9 border-danger" value="${b.userid}" readonly>
             </div>
 
             <div class="form-group row">
@@ -45,7 +45,7 @@
                        class="col-form-label col-2 text-right text-danger">
                     본문내용</label>
                 <textarea name="contents" id="contents" rows="15"
-                          class="form-control col-9 border-danger"></textarea>
+                          class="form-control col-9 border-danger">${b.contents}</textarea>
             </div>
 
             <div class="form-group row">
@@ -77,7 +77,7 @@
             <div class="form-group row">
                 <hr class="col-10">
                 <div class="col-12 text-center">
-                    <button type="button" class="btn btn-primary" id="savebdbbtn">
+                    <button type="button" class="btn btn-primary" id="modboard">
                         <i class="fas fa-check-circle"></i> 입력완료</button>
                     <button type="reset" class="btn btn-danger">
                         <i class="fas fa-times-circle"></i> 다시입력</button>

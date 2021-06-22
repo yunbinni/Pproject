@@ -1,7 +1,7 @@
 package ybc.spring.mvc.vo;
 
 public class Board {
-    protected String bno;
+    protected String bdno;
     protected String title;
     protected String userid;
     protected String regdate;
@@ -9,12 +9,12 @@ public class Board {
     protected String views;
     protected String likes;
 
-    public String getBno() {
-        return bno;
+    public String getBdno() {
+        return bdno;
     }
 
-    public void setBno(String bno) {
-        this.bno = bno;
+    public void setBdno(String bno) {
+        this.bdno = bno;
     }
 
     public String getTitle() {

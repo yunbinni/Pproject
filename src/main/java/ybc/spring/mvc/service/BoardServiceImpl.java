@@ -26,7 +26,13 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     public boolean modifyBoard(Board b) {
-        return false;
+        boolean isModified = false;
+
+        if(bdao.updateBoard(b) > 0) {
+            isModified = true;
+        }
+
+        return isModified;
     }
 
     @Override
