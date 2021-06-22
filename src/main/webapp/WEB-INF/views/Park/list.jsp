@@ -9,13 +9,13 @@
     <div class="row form-group">
         <select>
             <option>--상세조건--</option>
-            <option>주소</option>
+            <option value="addr">주소</option>
         </select>
     </div>
 
     <div class="col d-flex justify-content-center form-outline">
         <input type="search" class="form-control w-75" placeholder="상세조건을 선택후 검색하십시오." id="prksch" name="prksch">
-        <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
+        <button type="button" class="btn btn-primary" id="findbtn"><i class="fas fa-search"></i></button>
     </div>
 </div>
 

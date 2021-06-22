@@ -36,7 +36,7 @@ $.get("/data/Park.json", function(data) {
             content:
                 '<div className="iwContent" style="border: 1px solid black; width: 254px; height: 112px">' +
                     '<div className="iwTitle" style="font-size: 22px; text-align: center; height: 65px; line-height: 65px; border-bottom: 1px solid black">' +
-                        '<a href="https://map.kakao.com/link/search/' + position.주차장명.toString() + '">' + position.주차장명.toString() + '</a>' +
+                        '<a href="https://map.kakao.com/link/search/' + position.주차장명.toString() + '" target="_blank">' + position.주차장명.toString() + '</a>' +
                     '</div>' +
                     '<div className="addfav" style="height: 48px; text-align: center; line-height: 48px"><a href="#">관심지역추가</a></div>' +
                 '</div>',
