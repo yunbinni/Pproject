@@ -1,301 +1,301 @@
 package ybc.spring.mvc.vo;
 
 public class Park {
-    protected String 주차장관리번호;
-    protected String 주차장명;
-    protected String 주차장구분;
-    protected String 주차장유형;
-    protected String 소재지도로명주소;
-    protected String 소재지지번주소;
-    protected String 주차구획수;
-    protected String 급지구분;
-    protected String 부제시행구분;
-    protected String 운영요일;
-    protected String 평일운영시작시각;
-    protected String 평일운영종료시각;
-    protected String 토요일운영시작시각;
-    protected String 토요일운영종료시각;
-    protected String 공휴일운영시작시각;
-    protected String 공휴일운영종료시각;
-    protected String 요금정보;
-    protected String 주차기본시간;
-    protected String 주차기본요금;
-    protected String 추가단위시간;
-    protected String 추가단위요금;
-    protected String 일일주차권요금적용시간; // 원래 컬럼명은 1일~
-    protected String 일일주차권요금; // 원래 컬럼명은 1일~
-    protected String 월정기권요금;
-    protected String 결제방법;
-    protected String 특기사항;
-    protected String 관리기관명;
-    protected String 전화번호;
-    protected String 위도;
-    protected String 경도;
-    protected String 데이터기준일자;
-    protected String 제공기관코드;
-    protected String 제공기관명;
+    protected String pno;               // 주차장관리번호
+    protected String name;              // 주차장명
+    protected String gubun;             // 주차장구분             
+    protected String type;              // 주차장유형
+    protected String addr1;             // 소재지도로명주소
+    protected String addr2;             // 소재지지번주소
+    protected String sections;          // 주차구획수
+    protected String gupzi;             // 급지구획수
+    protected String buze;              // 부제시행구분
+    protected String busday;            // 운영요일            
+    protected String shour;             // 평일운영시작시각
+    protected String ehour;             // 평일운영종료시각
+    protected String satshour;          // 토요일운영시작시각
+    protected String satehour;          // 토요일운영종료시각
+    protected String gongshour;         // 공휴일운영시작시각
+    protected String gongehour;         // 공휴일운영종료시각
+    protected String feeinfo;           // 요금정보
+    protected String basichour;         // 주차기본시간
+    protected String basicfee;          // 주차기본요금
+    protected String addunithour;       // 추가단위시간
+    protected String addunitfee;        // 추가단위요금
+    protected String onedaypasshour;    // 1일주차권요금적용시간
+    protected String ondaypassfee;      // 1일주차권요금
+    protected String monthpassfee;      // 월정기권요금
+    protected String payment;           // 결제방법
+    protected String detail;            // 특기사항
+    protected String operator;          // 관리기관명
+    protected String telephone;         // 전화번호
+    protected double lng;               // 위도
+    protected double lat;               // 경도
+    protected String lastdatarenewal;   // 데이터기준일자
+    protected String providercode;      // 제공기관코드
+    protected String providername;      // 제공기관명
 
-    public String get주차장관리번호() {
-        return 주차장관리번호;
+    public String getPno() {
+        return pno;
     }
 
-    public void set주차장관리번호(String 주차장관리번호) {
-        this.주차장관리번호 = 주차장관리번호;
+    public void setPno(String pno) {
+        this.pno = pno;
     }
 
-    public String get주차장명() {
-        return 주차장명;
+    public String getName() {
+        return name;
     }
 
-    public void set주차장명(String 주차장명) {
-        this.주차장명 = 주차장명;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String get주차장구분() {
-        return 주차장구분;
+    public String getGubun() {
+        return gubun;
     }
 
-    public void set주차장구분(String 주차장구분) {
-        this.주차장구분 = 주차장구분;
+    public void setGubun(String gubun) {
+        this.gubun = gubun;
     }
 
-    public String get주차장유형() {
-        return 주차장유형;
+    public String getType() {
+        return type;
     }
 
-    public void set주차장유형(String 주차장유형) {
-        this.주차장유형 = 주차장유형;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public String get소재지도로명주소() {
-        return 소재지도로명주소;
+    public String getAddr1() {
+        return addr1;
     }
 
-    public void set소재지도로명주소(String 소재지도로명주소) {
-        this.소재지도로명주소 = 소재지도로명주소;
+    public void setAddr1(String addr1) {
+        this.addr1 = addr1;
     }
 
-    public String get소재지지번주소() {
-        return 소재지지번주소;
+    public String getAddr2() {
+        return addr2;
     }
 
-    public void set소재지지번주소(String 소재지지번주소) {
-        this.소재지지번주소 = 소재지지번주소;
+    public void setAddr2(String addr2) {
+        this.addr2 = addr2;
     }
 
-    public String get주차구획수() {
-        return 주차구획수;
+    public String getSections() {
+        return sections;
     }
 
-    public void set주차구획수(String 주차구획수) {
-        this.주차구획수 = 주차구획수;
+    public void setSections(String sections) {
+        this.sections = sections;
     }
 
-    public String get급지구분() {
-        return 급지구분;
+    public String getGupzi() {
+        return gupzi;
     }
 
-    public void set급지구분(String 급지구분) {
-        this.급지구분 = 급지구분;
+    public void setGupzi(String gupzi) {
+        this.gupzi = gupzi;
     }
 
-    public String get부제시행구분() {
-        return 부제시행구분;
+    public String getBuze() {
+        return buze;
     }
 
-    public void set부제시행구분(String 부제시행구분) {
-        this.부제시행구분 = 부제시행구분;
+    public void setBuze(String buze) {
+        this.buze = buze;
     }
 
-    public String get운영요일() {
-        return 운영요일;
+    public String getBusday() {
+        return busday;
     }
 
-    public void set운영요일(String 운영요일) {
-        this.운영요일 = 운영요일;
+    public void setBusday(String busday) {
+        this.busday = busday;
     }
 
-    public String get평일운영시작시각() {
-        return 평일운영시작시각;
+    public String getShour() {
+        return shour;
     }
 
-    public void set평일운영시작시각(String 평일운영시작시각) {
-        this.평일운영시작시각 = 평일운영시작시각;
+    public void setShour(String shour) {
+        this.shour = shour;
     }
 
-    public String get평일운영종료시각() {
-        return 평일운영종료시각;
+    public String getEhour() {
+        return ehour;
     }
 
-    public void set평일운영종료시각(String 평일운영종료시각) {
-        this.평일운영종료시각 = 평일운영종료시각;
+    public void setEhour(String ehour) {
+        this.ehour = ehour;
     }
 
-    public String get토요일운영시작시각() {
-        return 토요일운영시작시각;
+    public String getSatshour() {
+        return satshour;
     }
 
-    public void set토요일운영시작시각(String 토요일운영시작시각) {
-        this.토요일운영시작시각 = 토요일운영시작시각;
+    public void setSatshour(String satshour) {
+        this.satshour = satshour;
     }
 
-    public String get토요일운영종료시각() {
-        return 토요일운영종료시각;
+    public String getSatehour() {
+        return satehour;
     }
 
-    public void set토요일운영종료시각(String 토요일운영종료시각) {
-        this.토요일운영종료시각 = 토요일운영종료시각;
+    public void setSatehour(String satehour) {
+        this.satehour = satehour;
     }
 
-    public String get공휴일운영시작시각() {
-        return 공휴일운영시작시각;
+    public String getGongshour() {
+        return gongshour;
     }
 
-    public void set공휴일운영시작시각(String 공휴일운영시작시각) {
-        this.공휴일운영시작시각 = 공휴일운영시작시각;
+    public void setGongshour(String gongshour) {
+        this.gongshour = gongshour;
     }
 
-    public String get공휴일운영종료시각() {
-        return 공휴일운영종료시각;
+    public String getGongehour() {
+        return gongehour;
     }
 
-    public void set공휴일운영종료시각(String 공휴일운영종료시각) {
-        this.공휴일운영종료시각 = 공휴일운영종료시각;
+    public void setGongehour(String gongehour) {
+        this.gongehour = gongehour;
     }
 
-    public String get요금정보() {
-        return 요금정보;
+    public String getFeeinfo() {
+        return feeinfo;
     }
 
-    public void set요금정보(String 요금정보) {
-        this.요금정보 = 요금정보;
+    public void setFeeinfo(String feeinfo) {
+        this.feeinfo = feeinfo;
     }
 
-    public String get주차기본시간() {
-        return 주차기본시간;
+    public String getBasichour() {
+        return basichour;
     }
 
-    public void set주차기본시간(String 주차기본시간) {
-        this.주차기본시간 = 주차기본시간;
+    public void setBasichour(String basichour) {
+        this.basichour = basichour;
     }
 
-    public String get주차기본요금() {
-        return 주차기본요금;
+    public String getBasicfee() {
+        return basicfee;
     }
 
-    public void set주차기본요금(String 주차기본요금) {
-        this.주차기본요금 = 주차기본요금;
+    public void setBasicfee(String basicfee) {
+        this.basicfee = basicfee;
     }
 
-    public String get추가단위시간() {
-        return 추가단위시간;
+    public String getAddunithour() {
+        return addunithour;
     }
 
-    public void set추가단위시간(String 추가단위시간) {
-        this.추가단위시간 = 추가단위시간;
+    public void setAddunithour(String addunithour) {
+        this.addunithour = addunithour;
     }
 
-    public String get추가단위요금() {
-        return 추가단위요금;
+    public String getAddunitfee() {
+        return addunitfee;
     }
 
-    public void set추가단위요금(String 추가단위요금) {
-        this.추가단위요금 = 추가단위요금;
+    public void setAddunitfee(String addunitfee) {
+        this.addunitfee = addunitfee;
     }
 
-    public String get일일주차권요금적용시간() {
-        return 일일주차권요금적용시간;
+    public String getOnedaypasshour() {
+        return onedaypasshour;
     }
 
-    public void set일일주차권요금적용시간(String 일일주차권요금적용시간) {
-        this.일일주차권요금적용시간 = 일일주차권요금적용시간;
+    public void setOnedaypasshour(String onedaypasshour) {
+        this.onedaypasshour = onedaypasshour;
     }
 
-    public String get일일주차권요금() {
-        return 일일주차권요금;
+    public String getOndaypassfee() {
+        return ondaypassfee;
     }
 
-    public void set일일주차권요금(String 일일주차권요금) {
-        this.일일주차권요금 = 일일주차권요금;
+    public void setOndaypassfee(String ondaypassfee) {
+        this.ondaypassfee = ondaypassfee;
     }
 
-    public String get월정기권요금() {
-        return 월정기권요금;
+    public String getMonthpassfee() {
+        return monthpassfee;
     }
 
-    public void set월정기권요금(String 월정기권요금) {
-        this.월정기권요금 = 월정기권요금;
+    public void setMonthpassfee(String monthpassfee) {
+        this.monthpassfee = monthpassfee;
     }
 
-    public String get결제방법() {
-        return 결제방법;
+    public String getPayment() {
+        return payment;
     }
 
-    public void set결제방법(String 결제방법) {
-        this.결제방법 = 결제방법;
+    public void setPayment(String payment) {
+        this.payment = payment;
     }
 
-    public String get특기사항() {
-        return 특기사항;
+    public String getDetail() {
+        return detail;
     }
 
-    public void set특기사항(String 특기사항) {
-        this.특기사항 = 특기사항;
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 
-    public String get관리기관명() {
-        return 관리기관명;
+    public String getOperator() {
+        return operator;
     }
 
-    public void set관리기관명(String 관리기관명) {
-        this.관리기관명 = 관리기관명;
+    public void setOperator(String operator) {
+        this.operator = operator;
     }
 
-    public String get전화번호() {
-        return 전화번호;
+    public String getTelephone() {
+        return telephone;
     }
 
-    public void set전화번호(String 전화번호) {
-        this.전화번호 = 전화번호;
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 
-    public String get위도() {
-        return 위도;
+    public double getLng() {
+        return lng;
     }
 
-    public void set위도(String 위도) {
-        this.위도 = 위도;
+    public void setLng(double lng) {
+        this.lng = lng;
     }
 
-    public String get경도() {
-        return 경도;
+    public double getLat() {
+        return lat;
     }
 
-    public void set경도(String 경도) {
-        this.경도 = 경도;
+    public void setLat(double lat) {
+        this.lat = lat;
     }
 
-    public String get데이터기준일자() {
-        return 데이터기준일자;
+    public String getLastdatarenewal() {
+        return lastdatarenewal;
     }
 
-    public void set데이터기준일자(String 데이터기준일자) {
-        this.데이터기준일자 = 데이터기준일자;
+    public void setLastdatarenewal(String lastdatarenewal) {
+        this.lastdatarenewal = lastdatarenewal;
     }
 
-    public String get제공기관코드() {
-        return 제공기관코드;
+    public String getProvidercode() {
+        return providercode;
     }
 
-    public void set제공기관코드(String 제공기관코드) {
-        this.제공기관코드 = 제공기관코드;
+    public void setProvidercode(String providercode) {
+        this.providercode = providercode;
     }
 
-    public String get제공기관명() {
-        return 제공기관명;
+    public String getProvidername() {
+        return providername;
     }
 
-    public void set제공기관명(String 제공기관명) {
-        this.제공기관명 = 제공기관명;
+    public void setProvidername(String providername) {
+        this.providername = providername;
     }
 }

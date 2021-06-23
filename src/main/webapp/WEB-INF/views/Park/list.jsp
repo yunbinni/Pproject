@@ -1,4 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<fmt:parseNumber var="cp" value="${param.cp}" />
 
 <%-- 지도 부분(kakao) --%>
 <div id="map" class="row m-3" style="height:500px;"></div>
@@ -7,14 +12,14 @@
 <%-- 검색박스 부분(서치박스, search box) --%>
 <div class="row m-3 input-group rounded" id="schbox" name="schbox">
     <div class="row form-group">
-        <select>
+        <select id="findtype" name="findtype">
             <option>--상세조건--</option>
             <option value="addr">주소</option>
         </select>
     </div>
 
     <div class="col d-flex justify-content-center form-outline">
-        <input type="search" class="form-control w-75" placeholder="상세조건을 선택후 검색하십시오." id="prksch" name="prksch">
+        <input type="search" class="form-control w-75" placeholder="상세조건을 선택후 검색하여 주십시오." id="findkey" name="findkey" value="${param.findkey}" readonly>
         <button type="button" class="btn btn-primary" id="findbtn"><i class="fas fa-search"></i></button>
     </div>
 </div>
@@ -24,82 +29,37 @@
 
     <%-- 간단한 아이템들, brief items --%>
     <div id="list-example" class="col-3 d-inline list-group" style="display: inline-block">
-        <a class="list-group-item list-group-item-action" href="#list-item-1">산뜻한 주차장</a>
-        <a class="list-group-item list-group-item-action" href="#list-item-2">산뜻한 주차장</a>
-        <a class="list-group-item list-group-item-action" href="#list-item-3">산뜻한 주차장</a>
+        <c:forEach var="p" items="${parks}">
+            <a class="list-group-item list-group-item-action" href="#list-item-${p.name}">${p.name}</a>
+        </c:forEach>
     </div>
+
 
     <%-- 자세한 아이템들, detail items --%>
     <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="col-9 d-inline scrollspy-example" tabindex="0" style="overflow: auto; display: inline-block; width: 300px; height: 500px">
-
-        <div class="pt-1" id="list-item-1" style="height: 40%">
-            <div class="row">
-                <div class="col"><h2>산뜻한 주차장</h2></div>
-                <div class="col text-right m-2"><span>주차구획수 : 3</span></div>
-            </div>
-
-            <h5>경기도 의정부시 백제금동대향로 (080-500-4949)</h5>
-
-            <div class="row">
-                <%-- (평일, 토요일, 공휴일 운영여부를 보고 표기하기!) --%>
-                <div class="col">
-                    평일 : 09:00 ~ 18:00 <br>
-                    토요일 : 09:00 ~ 17:00 <br>
-                    공휴일 : (운영안함)
-                </div>
-
-                <div class="col d-flex justify-content-end pt-5">
-                    <button class="btn btn-sm btn-danger m-1" style="height: 30px">요일제</button>
-                    <button class="btn btn-sm btn-success m-1" style="height: 30px">지금가능!</button>
-                </div>
-            </div><hr><br>
-        </div> <%-- 아이템 반복 --%>
-
-        <div class="pt-1" id="list-item-2" style="height: 40%">
-            <div class="row">
-                <div class="col"><h2>산뜻한 주차장</h2></div>
-                <div class="col text-right m-2"><span>주차구획수 : 3</span></div>
-            </div>
-
-            <h5>경기도 의정부시 백제금동대향로 (080-500-4949)</h5>
-
-            <div class="row">
-                <%-- (평일, 토요일, 공휴일 운영여부를 보고 표기하기!) --%>
-                <div class="col">
-                    평일 : 09:00 ~ 18:00 <br>
-                    토요일 : 09:00 ~ 17:00 <br>
-                    공휴일 : (운영안함)
-                </div>
-
-                <div class="col d-flex justify-content-end pt-5">
-                    <button class="btn btn-sm btn-danger m-1" style="height: 30px">요일제</button>
-                    <button class="btn btn-sm btn-success m-1" style="height: 30px">지금가능!</button>
-                </div>
-            </div><hr><br>
-        </div> <%-- 아이템 반복 --%>
-
-        <div class="pt-1" id="list-item-3" style="height: 40%">
+        <c:forEach var="p" items="${parks}">
+            <div class="pt-1" id="list-item-${p.name}" style="height: 40%">
                 <div class="row">
-                    <div class="col"><h2>산뜻한 주차장</h2></div>
-                    <div class="col text-right m-2"><span>주차구획수 : 3</span></div>
+                    <div class="col"><h2>${p.name}</h2></div>
+                    <div class="col text-right m-2"><span>주차구획수 : ${p.sections}</span></div>
                 </div>
 
-                <h5>경기도 의정부시 백제금동대향로 (080-500-4949)</h5>
+                <h5>${p.addr1} (${p.telephone})</h5>
 
                 <div class="row">
                     <%-- (평일, 토요일, 공휴일 운영여부를 보고 표기하기!) --%>
                     <div class="col">
-                        평일 : 09:00 ~ 18:00 <br>
-                        토요일 : 09:00 ~ 17:00 <br>
-                        공휴일 : (운영안함)
+                        평일 : ${p.shour} ~ ${p.ehour} <br>
+                        토요일 : ${p.satshour} ~ ${p.satehour} <br>
+                        공휴일 : ${p.gongshour} ~ ${p.gongehour}
                     </div>
 
                     <div class="col d-flex justify-content-end pt-5">
-                        <button class="btn btn-sm btn-danger m-1" style="height: 30px">요일제</button>
+                        <button class="btn btn-sm btn-danger m-1" style="height: 30px">${p.buze}</button>
                         <button class="btn btn-sm btn-success m-1" style="height: 30px">지금가능!</button>
                     </div>
                 </div><hr><br>
             </div> <%-- 아이템 반복 --%>
-
+        </c:forEach>
     </div>
 </div>

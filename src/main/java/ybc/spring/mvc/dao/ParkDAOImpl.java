@@ -14,12 +14,12 @@ public class ParkDAOImpl implements ParkDAO {
     private SqlSession sqlSession;
 
     @Override
-    public List<Park> selectPark(Map<String, String> param) {
+    public List<Park> selectPark(Map<String, Object> param) {
         return sqlSession.selectList("park.selectPark", param);
     }
 
     @Override
-    public int selectCountPark(Map<String, String> param) {
+    public int selectCountPark(Map<String, Object> param) {
         return sqlSession.selectOne("park.selectCnt", param);
     }
 }

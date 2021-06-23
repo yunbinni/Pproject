@@ -6,6 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 public interface ParkDAO {
-    List<Park> selectPark(Map<String, String> param);
-    int selectCountPark(Map<String, String> param);
+    List<Park> selectPark(Map<String, Object> param);
+    int selectCountPark(Map<String, Object> param);
 }
