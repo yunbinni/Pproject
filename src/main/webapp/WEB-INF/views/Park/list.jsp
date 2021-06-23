@@ -3,7 +3,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<fmt:parseNumber var="cp" value="${param.cp}" />
+<fmt:parseNumber var="pcnt" value="${pcnt}" />
 
 <%-- 지도 부분(kakao) --%>
 <div id="map" class="row m-3" style="height:500px;"></div>
@@ -36,9 +36,9 @@
 
 
     <%-- 자세한 아이템들, detail items --%>
-    <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="col-9 d-inline scrollspy-example" tabindex="0" style="overflow: auto; display: inline-block; width: 300px; height: 500px">
+    <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="col-9 d-inline scrollspy-example" tabindex="0" style="overflow: auto; display: inline-block; width: 300px; height: 960px">
         <c:forEach var="p" items="${parks}">
-            <div class="pt-1" id="list-item-${p.name}" style="height: 40%">
+            <div class="pt-1" id="list-item-${p.name}" style="height: 240px">
                 <div class="row">
                     <div class="col"><h2>${p.name}</h2></div>
                     <div class="col text-right m-2"><span>주차구획수 : ${p.sections}</span></div>
@@ -55,10 +55,12 @@
                     </div>
 
                     <div class="col d-flex justify-content-end pt-5">
-                        <button class="btn btn-sm btn-danger m-1" style="height: 30px">${p.buze}</button>
+                        <c:if test="${p.buze eq '요일제'}">
+                            <button class="btn btn-sm btn-danger m-1" style="height: 30px">${p.buze}</button>
+                        </c:if>
                         <button class="btn btn-sm btn-success m-1" style="height: 30px">지금가능!</button>
                     </div>
-                </div><hr><br>
+                </div><hr>
             </div> <%-- 아이템 반복 --%>
         </c:forEach>
     </div>
