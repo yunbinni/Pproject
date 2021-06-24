@@ -2,7 +2,7 @@
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div
     mapOption = {
         center: new kakao.maps.LatLng(37.570176, 126.9810083), // 지도의 중심좌표
-        level: 6 // 지도의 확대 레벨(숫자가 작을수록 확대)
+        level: 8 // 지도의 확대 레벨(숫자가 작을수록 확대)
     };
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -46,16 +46,14 @@ $.get("/data/Park.json", function(data) {
             infowindow.open(map, marker);
         });
 
-        console.log(position.소재지도로명주소.toString());
-
         return marker; }
     });
 
+    // 지도의 중심좌표 재설정
+    map.setCenter(markers[0].getPosition());
+
     // 클러스터러에 마커들을 추가합니다
     clusterer.addMarkers(markers);
-
-    // 지도의 중심좌표 재설정
-    map.setCenter(markers[0].getPosition())
 });
 
 ///////////////////////////////////////////////////////////////////////////////////////////////

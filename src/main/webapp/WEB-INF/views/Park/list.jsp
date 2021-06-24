@@ -15,20 +15,24 @@
         <select id="findtype" name="findtype">
             <option>--상세조건--</option>
             <option value="addr">주소</option>
+            <option value="bushour">운영시간</option>
         </select>
     </div>
 
-    <div class="col d-flex justify-content-center form-outline">
-        <input type="search" class="form-control w-75" placeholder="상세조건을 선택후 검색하여 주십시오." id="findkey" name="findkey" value="${param.findkey}" readonly>
+    <div class="col d-flex justify-content-center form-outline" id="findbox" name="findbox">
+        <input type="search" class="form-control" placeholder="상세조건을 선택후 검색하여 주십시오." id="findkey" name="findkey" value="${param.findkey}" style="width: 600px" readonly>
         <button type="button" class="btn btn-primary" id="findbtn"><i class="fas fa-search"></i></button>
     </div>
 </div>
+
+<%-- 검색결과 건수 표시 --%>
+<div class="row justify-content-center"><p>총 <b>${pcnt}</b>건의 결과가 검색되었습니다.</p></div>
 
 <%-- 아이템 리스트 부분(Item List) => Bootstrap의 scrollspy 사용 --%>
 <div id="list" class="row border-right border-bottom">
 
     <%-- 간단한 아이템들, brief items --%>
-    <div id="list-example" class="col-3 d-inline list-group" style="display: inline-block">
+    <div id="list-example" class="col-3 d-inline list-group" style="display: inline-block; overflow: auto; height: 720px;">
         <c:forEach var="p" items="${parks}">
             <a class="list-group-item list-group-item-action" href="#list-item-${p.name}">${p.name}</a>
         </c:forEach>
@@ -36,7 +40,7 @@
 
 
     <%-- 자세한 아이템들, detail items --%>
-    <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="col-9 d-inline scrollspy-example" tabindex="0" style="overflow: auto; display: inline-block; width: 300px; height: 960px">
+    <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="col-9 d-inline scrollspy-example" tabindex="0" style="overflow: auto; display: inline-block; width: 300px; height: 720px">
         <c:forEach var="p" items="${parks}">
             <div class="pt-1" id="list-item-${p.name}" style="height: 240px">
                 <div class="row">
