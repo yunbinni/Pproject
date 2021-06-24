@@ -7,7 +7,6 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // 마커 클러스터러
 var clusterer = new kakao.maps.MarkerClusterer({
@@ -54,6 +53,9 @@ $.get("/data/Park.json", function(data) {
 
     // 클러스터러에 마커들을 추가합니다
     clusterer.addMarkers(markers);
+
+    // 지도의 중심좌표 재설정
+    map.setCenter(markers[0].getPosition())
 });
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
