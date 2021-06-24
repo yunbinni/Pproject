@@ -25,8 +25,102 @@
     </div>
 </div>
 
+<%-- 검색박스 부분: 대안(alternative) --%>
+<form>
+    <%-- 주소 --%>
+    <div class="form-group">
+        <input class="form-check-input" type="checkbox" value="" id="chkaddr">
+        <label class="form-check-label" for="chkaddr">주소</label>
+        <input type="text" class="form-control" id="addr" readonly>
+    </div>
+
+    <%-- 운영시간 --%>
+    <div class="form-group">
+        <input class="form-check-input" type="checkbox" value="" id="chkbushour">
+        <label for="chkbushour">운영시간</label>
+        <div class="d-flex justify-content-center">
+            <select class="form-control col-1" id="shour" disabled>
+                <option value='am'>오전</option>
+                <option value='pm'>오후</option>
+            </select>
+            <select class="form-control" id="samhour" style="width: 100px" disabled>
+                <option value='00:00'>00:00</option>
+                <option value='01:00'>01:00</option>
+                <option value='02:00'>02:00</option>
+                <option value='03:00'>03:00</option>
+                <option value='04:00'>04:00</option>
+                <option value='05:00'>05:00</option>
+                <option value='06:00'>06:00</option>
+                <option value='07:00'>07:00</option>
+                <option value='08:00'>08:00</option>
+                <option value='09:00'>09:00</option>
+                <option value='10:00'>10:00</option>
+                <option value='11:00'>11:00</option>
+            </select>
+            <p>부터 &nbsp;&nbsp;</p>
+            <select class="form-control col-1" id="ehour" disabled>
+                <option value='am'>오전</option>
+                <option value='pm'>오후</option>
+            </select>
+            <select class="form-control" id="eamhour" style="width: 100px" disabled>
+                <option value='00:00'>00:00</option>
+                <option value='01:00'>01:00</option>
+                <option value='02:00'>02:00</option>
+                <option value='03:00'>03:00</option>
+                <option value='04:00'>04:00</option>
+                <option value='05:00'>05:00</option>
+                <option value='06:00'>06:00</option>
+                <option value='07:00'>07:00</option>
+                <option value='08:00'>08:00</option>
+                <option value='09:00'>09:00</option>
+                <option value='10:00'>10:00</option>
+                <option value='11:00'>11:00</option>
+            </select>
+            <p>까지 &nbsp;&nbsp;</p>
+        </div>
+    </div>
+
+    <%-- 운영요일 --%>
+    <div class="form-group">
+        <input class="form-check-input" type="checkbox" value="super" id="chkbusday">
+        <label class="form-check-label" for="chkbusday">운영요일</label>
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-1">
+                <input class="form-check-input" type="checkbox" value="daythis" id="chkweekday" disabled>
+                <label class="form-check-label" for="chkweekday"><h5>평일</h5></label>
+            </div>
+            <div class="col-1">
+                <input class="form-check-input" type="checkbox" value="daythis" id="chksaturday" disabled>
+                <label class="form-check-label" for="chksaturday"><h5>토요일</h5></label>
+            </div>
+            <div class="col-1">
+                <input class="form-check-input" type="checkbox" value="daythis" id="chkholiday" disabled>
+                <label class="form-check-label" for="chkholiday"><h5>공휴일</h5></label>
+            </div>
+        </div>
+    </div>
+
+    <%-- 공영/민영 구분 --%>
+    <div class="form-group">
+        <input class="form-check-input" type="checkbox" value="" id="chkgubun">
+        <label class="form-check-label" for="chkbusday">구분</label>
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-1">
+                <input class="form-check-input" type="checkbox" value="gubunthis" id="chkpublic" disabled>
+                <label class="form-check-label" for="chkpublic"><h5>공영</h5></label>
+            </div>
+            <div class="col-1">
+                <input class="form-check-input" type="checkbox" value="gubunthis" id="chkprivate" disabled>
+                <label class="form-check-label" for="chkprivate"><h5>민영</h5></label>
+            </div>
+        </div>
+    </div>
+</form>
+
 <%-- 검색결과 건수 표시 --%>
-<div class="row justify-content-center"><p>총 <b>${pcnt}</b>건의 결과가 검색되었습니다.</p></div>
+<div class="row justify-content-center mt-2"><p>총 <b>${pcnt}</b>건의 결과가 검색되었습니다.</p></div>
 
 <%-- 아이템 리스트 부분(Item List) => Bootstrap의 scrollspy 사용 --%>
 <div id="list" class="row border-right border-bottom">
