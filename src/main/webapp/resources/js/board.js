@@ -4,11 +4,6 @@ $('#newbdbtn').on('click', function () {
     location.href = "/board/write";
 });
 
-//go to list
-$('#listbdbtn').on('click', function () {
-    location.href = "/board/list";
-});
-
 //save board
 $('#savebdbbtn').on('click', function () {
     if ($('#title').val() == '') {
@@ -37,6 +32,18 @@ $('#findbtn').on('click', function () {
     }
 });
 
+// search board
+$('#findbtn2').on('click', function () {
+    if($('#findkey').val() == '') {
+        alert('검색할 내용을 작성하세요!');
+    } else {
+        let qry = '?findtype=titcont';
+        qry += "&findkey=" + $('#findkey').val() + "&cp=1";
+        let url = '/board/find' + qry;
+        location.href = url;
+    }
+});
+
 // board findtype tag setting
 // $('#findtype').val('${param.findtype}').prop('selected', 'true');
 
@@ -44,7 +51,7 @@ $('#findbtn').on('click', function () {
 // new board reply
 $('#newbrbtn').on('click', function () {
     if ($('#contents').val() == "") {
-        alert('댓글을 작성하세요!')
+        alert('댓글을 작성하세요!');
     } else {
         const frm = $('#replefrm');
         frm.attr('method', 'post');
@@ -85,3 +92,47 @@ $('#modboard').on('click', function () {
         frm.submit();
     }
 });
+
+// update reple
+function modReple(rno) {
+    $('#modRepleModal').modal('show');
+    $('#rno').val(rno);
+};
+
+$('#modrpbtn').on('click', function () {
+    if ($('#modreple').val() == '') {
+        alert('수정내용을 작성하세요');
+    } else {
+        const frm = $('#modrpfrm');
+        frm.attr('method', 'post');
+        frm.attr('action', '/reple/update');
+        frm.submit();
+    }
+});
+
+// delete board
+$('#rmvbdbtn').on('click', function () {
+    location.href = '/board/remove?bdno=' + $('#bdno').val();
+});
+
+// delete reple
+function delReple(rno, bdno) {
+    location.href = '/reple/remove?bdno=' + bdno + '&rno=' + rno;
+};
+
+// 추천
+$('#thumbbtn').on('click', function () {
+    location.href = '/board/thumbsup?bdno=' + $('#bdno').val();
+});
+
+// 추천순 정렬
+$('#listThumbbtn').on('click', function () {
+    location.href = "/board/listThumbs?cp=1";
+});
+
+// 조회순 정렬
+$('#listViewbtn').on('click', function () {
+    location.href = "/board/listView?cp=1";
+});
+
+

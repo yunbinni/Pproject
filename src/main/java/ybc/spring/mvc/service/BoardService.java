@@ -1,6 +1,7 @@
 package ybc.spring.mvc.service;
 
 import ybc.spring.mvc.vo.Board;
+import ybc.spring.mvc.vo.Reple;
 
 import java.util.List;
 
@@ -18,4 +19,8 @@ public interface BoardService {
     int countBoard(String ftype, String fkey);
     boolean viewCountBoard(String bdno);
 
+    void thumbsBoard(String bdno);
+
+    List<Board> readThumbsBoard(String cp);
+    List<Board> readViewBoard(String cp);
 }

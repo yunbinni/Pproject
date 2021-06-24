@@ -72,7 +72,10 @@
                 <div class="g-recaptcha"
                      data-sitekey="6LfeIwgbAAAAAJRI8LFbwUoQSqqQXClSwrYuxOXN"></div>
                 <input type="hidden" id="g-recaptcha" name="g-recaptcha" />
+                <input type="hidden" name="bdno" value="${b.bdno}" />
             </div>
+
+
 
             <div class="form-group row">
                 <hr class="col-10">

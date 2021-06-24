@@ -3,11 +3,16 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<c:if test="${empty sessionScope.UID}">
+    <script>alert('로그인 후 이용해주세요!');
+    location.href='/board/list?cp=1'</script>
+</c:if>
+
 <div id="main">
 
     <script src="https://www.google.com/recaptcha/api.js"></script>
 
-    <div>
+    <div class="mt-5">
         <h2><i class="fas fa-list"> 자유 게시판</i></h2>
         <hr>
     </div><!-- 페이지 타이틀 -->
@@ -46,24 +51,6 @@
                     본문내용</label>
                 <textarea name="contents" id="contents" rows="15"
                           class="form-control col-9 border-danger"></textarea>
-            </div>
-
-            <div class="form-group row">
-                <label for="file1"
-                       class="col-form-label col-2 text-right text-danger">
-                    파일첨부</label>
-                <div class="custom-file col-9">
-                    <input type="file" name="img" id="file1" class="custom-file-input">
-                    <label class="custom-file-label">첨부할 파일을 선택하세요</label>
-                </div>
-                <div class="custom-file col-9 offset-2">
-                    <input type="file" name="img" id="file2" class="custom-file-input">
-                    <label class="custom-file-label">첨부할 파일을 선택하세요</label>
-                </div>
-                <div class="custom-file col-9 offset-2">
-                    <input type="file" name="img" id="file3" class="custom-file-input">
-                    <label class="custom-file-label">첨부할 파일을 선택하세요</label>
-                </div>
             </div>
 
             <div class="form-group row">

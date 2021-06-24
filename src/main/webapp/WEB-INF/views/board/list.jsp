@@ -26,31 +26,25 @@
 </c:if>
 
 <div id="main">
-    <div>
-        <h2><i class="fas fa-list"> 자유 게시판 ${tp} / ${bdcnt}</i></h2>
-        <hr>
-    </div><!-- 페이지 타이틀 -->
+    <div class="row mt-5">
+        <div class="col-10 offset-1">
+            <h2><i class="fas fa-list"> 자유 게시판</i></h2>
+            <hr>
+        </div><!-- 페이지 타이틀 -->
+    </div>
 
-    <div class="row">
+    <div class="row mb-3">
         <div class="col-5 offset-1">
-            <div class="form-group row">
-                <select class="form-control col-3 border-primary" name="findtype" id="findtype">
-                    <option value="title">제목</option>
-                    <option value="titcont">제목+내용</option>
-                    <option value="userid">작성자</option>
-                    <option value="contents">내용</option>
-                </select>&nbsp;
-                <input type="text" name="findkey" id="findkey"
-                       class="form-control col-4 border-primary" value="${param.findkey}">&nbsp;
-                <button type="button" id="findbtn" class="btn btn-primary">
-                    <i class="fas fa-search"></i> 검색</button>
+            <div>
+                <button type="button" class="btn btn-light" id="newbdbtn">
+                    <i class="fas fa-plus-circle"></i> 글 작성</button>
             </div>
         </div>
         <div class="col-5 text-right">
-            <button type="button" class="btn btn-light" id="newbdbtn">
-                <i class="fas fa-plus-circle"></i> 새글 쓰기</button>
+            <button type="button" id="listThumbbtn" class="btn btn-primary">추천순으로 보기</button>
+            <button type="button" id="listViewbtn" class="btn btn-primary">조회순으로 보기</button>
         </div>
-    </div><!-- 검색, 버튼 -->
+    </div>
 
     <div class="row">
         <div class="col-10 offset-1">
@@ -121,4 +115,22 @@
             </ul>
         </div>
     </div><!-- 페이지네이션 -->
+
+    <div class="row">
+        <div class="col-5 offset-4">
+            <div class="form-group row">
+                <select class="form-control col-3 border-primary" name="findtype" id="findtype">
+                    <option value="title">제목</option>
+                    <option value="titcont">제목+내용</option>
+                    <option value="userid">작성자</option>
+                    <option value="contents">내용</option>
+                </select>&nbsp;
+                <input type="text" name="findkey" id="findkey"
+                       class="form-control col-5 border-primary" value="${param.findkey}">&nbsp;
+                <button type="button" id="findbtn" class="btn btn-primary">
+                    <i class="fas fa-search"></i> 검색</button>
+            </div>
+        </div>
+    </div>
+
 </div>

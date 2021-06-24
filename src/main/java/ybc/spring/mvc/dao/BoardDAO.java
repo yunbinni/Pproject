@@ -19,4 +19,9 @@ public interface BoardDAO {
     int selectCountBoard(Map<String, Object> param);
     int viewCountBoard(String bdno);
 
+    int updateThumbs(String bdno);
+
+    List<Board> selectThumbsBoard(int snum);
+
+    List<Board> selecViewtBoard(int snum);
 }

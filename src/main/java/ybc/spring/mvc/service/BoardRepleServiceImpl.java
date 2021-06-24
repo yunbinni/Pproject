@@ -35,4 +35,26 @@ public class BoardRepleServiceImpl implements BoardRepleService{
         }
         return isInserted;
     }
+
+    @Override
+    public boolean modifyReple(Reple r) {
+        boolean isModified = false;
+
+        if(brdao.updateReple(r) > 0) {
+            isModified = true;
+        }
+
+        return isModified;
+    }
+
+    @Override
+    public boolean removeReple(String rno) {
+        boolean isRemoved = false;
+
+        if(brdao.deleteReple(rno) > 0) {
+            isRemoved = true;
+        }
+
+        return isRemoved;
+    }
 }

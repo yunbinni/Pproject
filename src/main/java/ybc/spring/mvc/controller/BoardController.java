@@ -108,5 +108,73 @@ public class BoardController {
 
         return "redirect:/board/list";
     }
+
+    // 댓글 수정
+    @PostMapping("/reple/update")
+    public String rpupdateok(Reple r) {
+        String returnPage = "redirect:/board/view?bdno="+r.getBdno();
+
+        brsrv.modifyReple(r);
+
+        return returnPage;
+    }
+
+    // 게시글 삭제
+    @GetMapping("/board/remove")
+    public String remove(String bdno) {
+
+        bsrv.removeBoard(bdno);
+
+        return "redirect:/board/list";
+
+    }
+
+    // 댓글 삭제
+    @GetMapping("/reple/remove")
+    public String rpremove(String rno, String bdno) {
+        String returnPage = "redirect:/board/view?bdno="+bdno;
+
+        brsrv.removeReple(rno);
+
+        return returnPage;
+
+    }
+
+    // 추천
+    @GetMapping("/board/thumbsup")
+    public String thumbsup(String bdno) {
+        String returnPage = "redirect:/board/view?bdno=" + bdno;
+
+        System.out.println(bdno);
+
+        bsrv.thumbsBoard(bdno);
+
+        return returnPage;
+    }
+
+    // 추천순 정렬
+    @GetMapping("/board/listThumbs")
+    public ModelAndView listThumbs(ModelAndView mv, String cp) {
+        if(cp == null) { cp = "1"; }
+
+        mv.setViewName("board/list.tiles");
+        mv.addObject("bds" ,bsrv.readThumbsBoard(cp));
+        mv.addObject("bdcnt" ,bsrv.countBoard());
+
+        return mv;
+    }
+
+    // 조회순 정렬
+    @GetMapping("/board/listView")
+    public ModelAndView listView(ModelAndView mv, String cp) {
+        if(cp == null) { cp = "1"; }
+
+        mv.setViewName("board/list.tiles");
+        mv.addObject("bds" ,bsrv.readViewBoard(cp));
+        mv.addObject("bdcnt" ,bsrv.countBoard());
+
+        return mv;
+    }
+
 }
 

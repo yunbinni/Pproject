@@ -37,7 +37,13 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     public boolean removeBoard(String bdno) {
-        return false;
+        boolean isRemoved = false;
+
+        if(bdao.deleteBoard(bdno) > 0) {
+            isRemoved = true;
+        }
+
+        return isRemoved;
     }
 
     @Override
@@ -87,5 +93,24 @@ public class BoardServiceImpl implements BoardService{
         }
 
         return isUpdated;
+    }
+
+    @Override
+    public void thumbsBoard(String bdno) {
+        bdao.updateThumbs(bdno);
+    }
+
+    @Override
+    public List<Board> readThumbsBoard(String cp) {
+        int snum = 20 * (Integer.parseInt(cp) - 1);
+
+        return bdao.selectThumbsBoard(snum);
+    }
+
+    @Override
+    public List<Board> readViewBoard(String cp) {
+        int snum = 20 * (Integer.parseInt(cp) - 1);
+
+        return bdao.selecViewtBoard(snum);
     }
 }

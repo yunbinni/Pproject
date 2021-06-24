@@ -11,4 +11,7 @@ public interface BoardRepleService {
     boolean newComment(Reple r);
     boolean newReple(Reple r);
 
+    boolean modifyReple(Reple r);
+
+    boolean removeReple(String rno);
 }

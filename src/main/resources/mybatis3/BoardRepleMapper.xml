@@ -20,4 +20,15 @@
         values (#{contents}, #{userid}, #{bdno}, #{rpno})
     </insert>
 
+    <update id="updateReple" statementType="PREPARED"
+            parameterType="ybc.spring.mvc.vo.Reple">
+        update Preple set contents = #{contents}
+        where rno = #{rno}
+    </update>
+
+    <delete id="deleteReple" statementType="PREPARED"
+            parameterType="String">
+        delete from Preple where rno = #{rno}
+    </delete>
+
 </mapper>

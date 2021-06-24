@@ -11,4 +11,9 @@ public interface BoardRepleDAO {
     int insertComment(Reple r);
     int insertReple(Reple r);
 
+    int updateReple(Reple r);
+
+    int deleteReple(String rno);
+
+
 }

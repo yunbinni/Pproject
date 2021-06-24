@@ -7,14 +7,14 @@
 " scope="application" />
 
 <!-- 세션 임의로 생성해서 테스트 -->
-<%
-    HttpSession sess = request.getSession();
+<%--<%--%>
+<%--    HttpSession sess = request.getSession();--%>
 
-    sess.setAttribute("UID", "anrdl3294");
-%>
+<%--    sess.setAttribute("UID", "anrdl3294");--%>
+<%--%>--%>
 
 <div class="container mt-5">
-    <div>
+    <div class="mt-5">
         <h2><i class="fas fa-list"> 자유 게시판</i></h2>
         <hr>
     </div><!-- 페이지 타이틀 -->
@@ -32,32 +32,42 @@
                     <!-- Post categories-->
                     <span class="text-muted fst-italic">작성자 ${bd.userid} / </span>
                     <span class="text-muted fst-italic">조회수 ${bd.views} / </span>
-                    <span class="text-muted fst-italic">추천수 ${bd.likes} / </span>
+                    <span class="text-muted fst-italic">추천수 ${bd.likes}</span>
                     <c:if test="${not empty UID and UID eq bd.userid}">
                         <span style="float: right">
                             <button type="button" class="btn btn-warning text-white" id="modbdbtn">
                                 <i class="fas fa-edit"></i> 수정하기</button>
-                            <button type="button" class="btn btn-danger">
+                            <button type="button" class="btn btn-danger" id="rmvbdbtn">
                                 <i class="fas fa-trash-alt"></i> 삭제하기</button>
                         </span>
                     </c:if>
                 </header>
-                <!-- Preview image figure-->
-                <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>
                 <!-- Post content-->
-                <section class="mb-5">
-                    <p class="fs-5 mb-4">${fn:replace(bd.contents, newChar, "<br>")}</p>
+                <section class="mb-5" style="min-height:300px">
+                    <p class="fs-5 mb-4" s>${fn:replace(bd.contents, newChar, "<br>")}</p>
                     <input type="hidden" id="bdno" value="${param.bdno}">
                 </section>
+                <c:if test="${not empty UID}">
+                    <div style="float: right" class="mb-3">
+                        <button type="button" class="btn btn-danger" id="thumbbtn">
+                            <i class="far fa-thumbs-up"></i> 추천하기</button>
+                    </div>
+                </c:if>
             </article>
             <!-- Comments section-->
-            <section class="mb-5">
+            <section class="mb-5" style="clear: both">
                 <div class="card bg-light">
                     <div class="card-body">
                         <!-- Comment form-->
-                        <form class="mb-4" name="replefrm" id="replefrm">
-                            <textarea class="form-control" name="contents" id="contents" rows="3" placeholder="댓글을 달아보세요!"></textarea>
-                            <button type="button" id="newbrbtn">작성완료</button>
+                        <form class="mb-5" name="replefrm" id="replefrm">
+                            <textarea class="form-control" name="contents" id="contents" rows="3"
+                                      <c:if test="${not empty sessionScope.UID}">
+                                        placeholder="댓글을 달아보세요!"
+                                      </c:if>
+                                      <c:if test="${empty sessionScope.UID}">
+                                        placeholder="로그인 후 이용해주세요!!" disabled
+                                      </c:if>></textarea>
+                            <button type="button" id="newbrbtn" class="btn btn-outline-dark btn-sm mt-1">작성완료</button>
                             <input type="hidden" name="userid" value="${UID}">
                             <input type="hidden" name="bdno" value="${param.bdno}">
                         </form>
@@ -71,7 +81,7 @@
                                         <span class="fw-bold">${r.userid} / <span class="text-muted">${fn:substring(r.regdate, 0, 19)}</span>
                                             <span style= "float: right; text-align: right">
                                                 <c:if test="${not empty UID}"><a href="javascript:addReply('${r.rno}')"> [추가]</a> </c:if>
-                                                <c:if test="${UID eq r.userid}">[수정] [삭제]</c:if>
+                                                <c:if test="${UID eq r.userid}"><a href="javascript:modReple('${r.rno}')">[수정]</a> <a href="javascript:delReple('${r.rno}','${r.bdno}')">[삭제]</a></c:if>
                                             </span>
                                         </span>
                                         <p>${r.contents}</p>
@@ -84,7 +94,7 @@
                                             <span><i class="far fa-comments"></i></span>&nbsp;&nbsp;
                                             <span class="fw-bold">${r.userid} / <span class="text-muted">${fn:substring(r.regdate, 0, 19)}</span>
                                                 <span style="float: right; text-align: right">
-                                                <c:if test="${UID eq r.userid}">[수정] [삭제]</c:if></span>
+                                                    <c:if test="${UID eq r.userid}"><a href="javascript:modReple('${r.rno}')">[수정]</a> <a href="javascript:delReple('${r.rno}','${r.bdno}')">[삭제]</a></c:if></span>
                                             </span>
                                             <p>${r.contents}</p>
                                         </div>
@@ -103,8 +113,8 @@
                 <div class="card-header">Search</div>
                 <div class="card-body">
                     <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                        <button class="btn btn-primary" id="button-search" type="button">Go!</button>
+                        <input class="form-control" type="text" placeholder="검색할 내용을 입력하세요" aria-label="Enter search term..." name="findkey" id="findkey"/>
+                        <button class="btn btn-primary" id="findbtn2" type="button">검색</button>
                     </div>
                 </div>
             </div>
@@ -115,16 +125,14 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <ul class="list-unstyled mb-0">
-                                <li><a href="#!">Web Design</a></li>
-                                <li><a href="#!">HTML</a></li>
-                                <li><a href="#!">Freebies</a></li>
+                                <li><a href="/">홈으로</a></li>
+                                <li><a href="/">공지사항</a></li>
                             </ul>
                         </div>
                         <div class="col-sm-6">
                             <ul class="list-unstyled mb-0">
-                                <li><a href="#!">JavaScript</a></li>
-                                <li><a href="#!">CSS</a></li>
-                                <li><a href="#!">Tutorials</a></li>
+                                <li><a href="/board/list?cp=1">자유게시판</a></li>
+                                <li><a href="/board/write">새글작성</a></li>
                             </ul>
                         </div>
                     </div>
@@ -163,3 +171,28 @@
     </div>
 
 </div>
+
+<!-- 대댓글 수정을 위한 모달 대화상자 -->
+<div class="modal hide" id="modRepleModal" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">댓글 수정하기</h3>
+            </div>
+            <div class="modal-body">
+                <form name="modrpfrm" id="modrpfrm" class="well form-inline">
+					<textarea name="contents" id="modreple" rows="8"
+                              cols="75" class=""></textarea>
+                    <input type="hidden" name="bdno" value="${param.bdno}">
+                    <input type="hidden" name="rno" id="rno">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="modrpbtn"
+                        class="btn btn-warning">수정</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+

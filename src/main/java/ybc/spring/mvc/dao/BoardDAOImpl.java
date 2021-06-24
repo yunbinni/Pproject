@@ -26,7 +26,7 @@ public class BoardDAOImpl implements BoardDAO{
 
     @Override
     public int deleteBoard(String bdno) {
-        return 0;
+        return sqlSession.delete("board.deleteBoard", bdno);
     }
 
     @Override
@@ -57,5 +57,20 @@ public class BoardDAOImpl implements BoardDAO{
     @Override
     public int viewCountBoard(String bdno) {
         return sqlSession.update("board.viewsBoard", bdno);
+    }
+
+    @Override
+    public int updateThumbs(String bdno) {
+        return sqlSession.update("board.thumbsupBoard", bdno);
+    }
+
+    @Override
+    public List<Board> selectThumbsBoard(int snum) {
+        return sqlSession.selectList("board.selectThumbsBoard", snum);
+    }
+
+    @Override
+    public List<Board> selecViewtBoard(int snum) {
+        return sqlSession.selectList("board.selectViewBoard", snum);
     }
 }

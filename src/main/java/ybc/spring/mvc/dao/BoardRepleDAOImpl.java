@@ -30,6 +30,16 @@ public class BoardRepleDAOImpl implements BoardRepleDAO{
         return sqlSession.insert("bdreple.insertComment", r);
     }
 
+    @Override
+    public int updateReple(Reple r) {
+        return sqlSession.update("bdreple.updateReple", r);
+    }
+
+    @Override
+    public int deleteReple(String rno) {
+        return sqlSession.delete("bdreple.deleteReple", rno);
+    }
+
     private String selectLastRno() {
         return sqlSession.selectOne("bdreple.selectLastRno");
     }
