@@ -141,7 +141,7 @@
             <!-- Side widget-->
             <div class="card mb-4">
                 <div class="card-header">Side Widget</div>
-                <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
+                <div class="card-body">광고이미지</div>
             </div>
         </div>
     </div>
@@ -152,7 +152,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">대댓글 쓰기</h3>
+                <h3 class="modal-title">추가댓글 쓰기</h3>
             </div>
             <div class="modal-body">
                 <form name="rpfrm" id="rpfrm" class="well form-inline">
