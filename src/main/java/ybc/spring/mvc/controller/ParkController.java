@@ -18,11 +18,10 @@ public class ParkController {
 
     // 주차장 검색 기능 구현
     @GetMapping("Park/find")
-    public ModelAndView find(ModelAndView mv, String cp, String findtype, String findkey) {
-        if(cp == null) cp = "1";
+    public ModelAndView find(ModelAndView mv, String addr, String shour, String ehour, String satshour, String satehour, String holshour, String holehour, String weekday, String saturday, String holiday, String gubun) {
         mv.setViewName("Park/list.tiles");
-        mv.addObject("parks", psrv.readPark(cp, findtype, findkey));
-        mv.addObject("pcnt", psrv.countPark(findtype, findkey));
+        mv.addObject("parks", psrv.readPark(addr, shour, ehour, satshour, satehour, holshour, holehour, weekday, saturday, holiday, gubun));
+        mv.addObject("pcnt", psrv.countPark(addr, shour, ehour, satshour, satehour, holshour, holehour, weekday, saturday, holiday, gubun));
         return mv;
     }
 }

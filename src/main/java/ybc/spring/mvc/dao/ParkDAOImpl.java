@@ -9,17 +9,17 @@ import java.util.List;
 import java.util.Map;
 
 @Repository("pdao")
-public class ParkDAOImpl implements ParkDAO {
+public class ParkDAOImpl implements ParkDAO{
     @Autowired
     private SqlSession sqlSession;
 
     @Override
-    public List<Park> selectPark(Map<String, Object> param) {
-        return sqlSession.selectList("park.selectPark", param);
+    public List<Park> selectPark(Map<String, Object> params) {
+        return sqlSession.selectList("park.selectPark", params);
     }
 
     @Override
-    public int selectCountPark(Map<String, Object> param) {
-        return sqlSession.selectOne("park.selectCnt", param);
+    public int selectCnt(Map<String, Object> params) {
+        return sqlSession.selectOne("park.selectCnt", params);
     }
 }

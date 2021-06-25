@@ -15,8 +15,8 @@ public class Park {
     protected String ehour;             // 평일운영종료시각
     protected String satshour;          // 토요일운영시작시각
     protected String satehour;          // 토요일운영종료시각
-    protected String gongshour;         // 공휴일운영시작시각
-    protected String gongehour;         // 공휴일운영종료시각
+    protected String holshour;         // 공휴일운영시작시각
+    protected String holehour;         // 공휴일운영종료시각
     protected String feeinfo;           // 요금정보
     protected String basichour;         // 주차기본시간
     protected String basicfee;          // 주차기본요금
@@ -147,20 +147,20 @@ public class Park {
         this.satehour = satehour;
     }
 
-    public String getGongshour() {
-        return gongshour;
+    public String getHolshour() {
+        return holshour;
     }
 
-    public void setGongshour(String gongshour) {
-        this.gongshour = gongshour;
+    public void setHolshour(String holshour) {
+        this.holshour = holshour;
     }
 
-    public String getGongehour() {
-        return gongehour;
+    public String getHolehour() {
+        return holehour;
     }
 
-    public void setGongehour(String gongehour) {
-        this.gongehour = gongehour;
+    public void setHolehour(String holehour) {
+        this.holehour = holehour;
     }
 
     public String getFeeinfo() {

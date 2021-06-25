@@ -9,41 +9,35 @@
 <div id="map" class="row m-3" style="height:500px;"></div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d5de2f58e2eedf30ed86a815506ae35e&libraries=clusterer"></script>
 
-<%-- 검색박스 부분(서치박스, search box) --%>
-<div class="row m-3 input-group rounded" id="schbox" name="schbox">
-    <div class="row form-group">
-        <select id="findtype" name="findtype">
-            <option>--상세조건--</option>
-            <option value="addr">주소</option>
-            <option value="bushour">운영시간</option>
-        </select>
-    </div>
-
-    <div class="col d-flex justify-content-center form-outline" id="findbox" name="findbox">
-        <input type="search" class="form-control" placeholder="상세조건을 선택후 검색하여 주십시오." id="findkey" name="findkey" value="${param.findkey}" style="width: 600px" readonly>
-        <button type="button" class="btn btn-primary" id="findbtn"><i class="fas fa-search"></i></button>
-    </div>
-</div>
-
-<%-- 검색박스 부분: 대안(alternative) --%>
-<form>
+<%-- 검색박스 부분 --%>
+<div>
     <%-- 주소 --%>
     <div class="form-group">
-        <input class="form-check-input" type="checkbox" value="" id="chkaddr">
+        <input class="form-check-input" type="checkbox" id="chkaddr">
         <label class="form-check-label" for="chkaddr">주소</label>
         <input type="text" class="form-control" id="addr" readonly>
-    </div>
+    </div><hr>
 
     <%-- 운영시간 --%>
     <div class="form-group">
         <input class="form-check-input" type="checkbox" value="" id="chkbushour">
         <label for="chkbushour">운영시간</label>
+
+        <%-- 평일 --%>
         <div class="d-flex justify-content-center">
-            <select class="form-control col-1" id="shour" disabled>
+            <div class="col-1">
+                <input class="form-check-input" type="checkbox" id="chkweekday" name="chkday" value="평일" disabled>
+                <label class="form-check-label" for="chkweekday"><h5>평일</h5></label>
+            </div>
+            <div class="col-1">
+                <input class="form-check-input" type="checkbox" id="anytime1" name="chkanytime" disabled>
+                <label class="form-check-label" for="anytime1">시간무관</label>
+            </div>
+            <select class="form-control col-1" id="ampmWeekday1" name="selectWeekday" disabled>
                 <option value='am'>오전</option>
                 <option value='pm'>오후</option>
             </select>
-            <select class="form-control" id="samhour" style="width: 100px" disabled>
+            <select class="form-control" name="selectWeekday" style="width: 100px" disabled>
                 <option value='00:00'>00:00</option>
                 <option value='01:00'>01:00</option>
                 <option value='02:00'>02:00</option>
@@ -58,11 +52,11 @@
                 <option value='11:00'>11:00</option>
             </select>
             <p>부터 &nbsp;&nbsp;</p>
-            <select class="form-control col-1" id="ehour" disabled>
+            <select class="form-control col-1" id="ampmWeekday2" name="selectWeekday" disabled>
                 <option value='am'>오전</option>
                 <option value='pm'>오후</option>
             </select>
-            <select class="form-control" id="eamhour" style="width: 100px" disabled>
+            <select class="form-control" name="selectWeekday" style="width: 100px" disabled>
                 <option value='00:00'>00:00</option>
                 <option value='01:00'>01:00</option>
                 <option value='02:00'>02:00</option>
@@ -78,33 +72,112 @@
             </select>
             <p>까지 &nbsp;&nbsp;</p>
         </div>
-    </div>
 
-    <%-- 운영요일 --%>
-    <div class="form-group">
-        <input class="form-check-input" type="checkbox" value="super" id="chkbusday">
-        <label class="form-check-label" for="chkbusday">운영요일</label>
-
-        <div class="row d-flex justify-content-center">
+        <%-- 토요일 --%>
+        <div class="d-flex justify-content-center">
             <div class="col-1">
-                <input class="form-check-input" type="checkbox" value="daythis" id="chkweekday" disabled>
-                <label class="form-check-label" for="chkweekday"><h5>평일</h5></label>
-            </div>
-            <div class="col-1">
-                <input class="form-check-input" type="checkbox" value="daythis" id="chksaturday" disabled>
+                <input class="form-check-input" type="checkbox" id="chksaturday" name="chkday" value="토요일" disabled>
                 <label class="form-check-label" for="chksaturday"><h5>토요일</h5></label>
             </div>
             <div class="col-1">
-                <input class="form-check-input" type="checkbox" value="daythis" id="chkholiday" disabled>
+                <input class="form-check-input" type="checkbox" id="anytime2" name="chkanytime" disabled>
+                <label class="form-check-label" for="anytime2">시간무관</label>
+            </div>
+            <select class="form-control col-1" id="ampmSaturday1" name="selectSaturday" disabled>
+                <option value='am'>오전</option>
+                <option value='pm'>오후</option>
+            </select>
+            <select class="form-control" name="selectSaturday" style="width: 100px" disabled>
+                <option value='00:00'>00:00</option>
+                <option value='01:00'>01:00</option>
+                <option value='02:00'>02:00</option>
+                <option value='03:00'>03:00</option>
+                <option value='04:00'>04:00</option>
+                <option value='05:00'>05:00</option>
+                <option value='06:00'>06:00</option>
+                <option value='07:00'>07:00</option>
+                <option value='08:00'>08:00</option>
+                <option value='09:00'>09:00</option>
+                <option value='10:00'>10:00</option>
+                <option value='11:00'>11:00</option>
+            </select>
+            <p>부터 &nbsp;&nbsp;</p>
+            <select class="form-control col-1" id="ampmSaturday2" name="selectSaturday" disabled>
+                <option value='am'>오전</option>
+                <option value='pm'>오후</option>
+            </select>
+            <select class="form-control" name="selectSaturday" style="width: 100px" disabled>
+                <option value='00:00'>00:00</option>
+                <option value='01:00'>01:00</option>
+                <option value='02:00'>02:00</option>
+                <option value='03:00'>03:00</option>
+                <option value='04:00'>04:00</option>
+                <option value='05:00'>05:00</option>
+                <option value='06:00'>06:00</option>
+                <option value='07:00'>07:00</option>
+                <option value='08:00'>08:00</option>
+                <option value='09:00'>09:00</option>
+                <option value='10:00'>10:00</option>
+                <option value='11:00'>11:00</option>
+            </select>
+            <p>까지 &nbsp;&nbsp;</p>
+        </div>
+
+        <%-- 공휴일 --%>
+        <div class="d-flex justify-content-center">
+            <div class="col-1">
+                <input class="form-check-input" type="checkbox" id="chkholiday" name="chkday" value="공휴일" disabled>
                 <label class="form-check-label" for="chkholiday"><h5>공휴일</h5></label>
             </div>
+            <div class="col-1">
+                <input class="form-check-input" type="checkbox" id="anytime3" name="chkanytime" disabled>
+                <label class="form-check-label" for="anytime3">시간무관</label>
+            </div>
+            <select class="form-control col-1" id="ampmHoliday1" name="selectHoliday" disabled>
+                <option value='am'>오전</option>
+                <option value='pm'>오후</option>
+            </select>
+            <select class="form-control" name="selectHoliday" style="width: 100px" disabled>
+                <option value='00:00'>00:00</option>
+                <option value='01:00'>01:00</option>
+                <option value='02:00'>02:00</option>
+                <option value='03:00'>03:00</option>
+                <option value='04:00'>04:00</option>
+                <option value='05:00'>05:00</option>
+                <option value='06:00'>06:00</option>
+                <option value='07:00'>07:00</option>
+                <option value='08:00'>08:00</option>
+                <option value='09:00'>09:00</option>
+                <option value='10:00'>10:00</option>
+                <option value='11:00'>11:00</option>
+            </select>
+            <p>부터 &nbsp;&nbsp;</p>
+            <select class="form-control col-1" id="ampmHoliday2" name="selectHoliday" disabled>
+                <option value='am'>오전</option>
+                <option value='pm'>오후</option>
+            </select>
+            <select class="form-control" style="width: 100px" name="selectHoliday" disabled>
+                <option value='00:00'>00:00</option>
+                <option value='01:00'>01:00</option>
+                <option value='02:00'>02:00</option>
+                <option value='03:00'>03:00</option>
+                <option value='04:00'>04:00</option>
+                <option value='05:00'>05:00</option>
+                <option value='06:00'>06:00</option>
+                <option value='07:00'>07:00</option>
+                <option value='08:00'>08:00</option>
+                <option value='09:00'>09:00</option>
+                <option value='10:00'>10:00</option>
+                <option value='11:00'>11:00</option>
+            </select>
+            <p>까지 &nbsp;&nbsp;</p>
         </div>
-    </div>
+    </div><hr>
 
     <%-- 공영/민영 구분 --%>
     <div class="form-group">
         <input class="form-check-input" type="checkbox" value="" id="chkgubun">
-        <label class="form-check-label" for="chkbusday">구분</label>
+        <label class="form-check-label" for="chkgubun">구분</label>
 
         <div class="row d-flex justify-content-center">
             <div class="col-1">
@@ -116,8 +189,13 @@
                 <label class="form-check-label" for="chkprivate"><h5>민영</h5></label>
             </div>
         </div>
+    </div><hr>
+
+    <%-- 검색버튼 --%>
+    <div class="row justify-content-end">
+        <button type="button" class="btn btn-primary" id="schbtn"><i class="fas fa-search"></i>검색하기</button>
     </div>
-</form>
+</div>
 
 <%-- 검색결과 건수 표시 --%>
 <div class="row justify-content-center mt-2"><p>총 <b>${pcnt}</b>건의 결과가 검색되었습니다.</p></div>

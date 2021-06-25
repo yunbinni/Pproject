@@ -24,7 +24,7 @@ $.get("/data/Park.json", function(data) {
     // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
     var markers = $(data.positions).map(function(i, position) {
 
-        if(position.소재지도로명주소 != null && position.소재지도로명주소.toString().includes( $("#findkey").val() )) {
+        // if(position.소재지도로명주소 != null && position.소재지도로명주소.toString().includes( $("#findkey").val() )) {
         var marker =  new kakao.maps.Marker({
             position : new kakao.maps.LatLng(position.위도, position.경도),
             clickable : true
@@ -46,11 +46,9 @@ $.get("/data/Park.json", function(data) {
             infowindow.open(map, marker);
         });
 
-        return marker; }
+        return marker;
+    // }
     });
-
-    // 지도의 중심좌표 재설정
-    map.setCenter(markers[0].getPosition());
 
     // 클러스터러에 마커들을 추가합니다
     clusterer.addMarkers(markers);
