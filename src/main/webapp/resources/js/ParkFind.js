@@ -63,12 +63,18 @@ $("#anytime3").on('change', function() {
 
 // 구분 체크박스
 $("#chkgubun").on('change', function() {
-    if($("#chkgubun").is(":checked") == true) $("input[name=gubunthis]").prop("disabled", false);
+    if($("#chkgubun").is(":checked") == true) {
+        $("input[name=gubunthis]").prop("disabled", false);
+        $("#chkpublic").prop("checked", true);
+    }
     else $("input[name=gubunthis]").prop("disabled", true);
 })
 // 부제(요일제) 체크박스
 $("#chkbuze").on('change', function() {
-    if($("#chkbuze").is(":checked")) $("input[name=buzethis]").prop("disabled", false);
+    if($("#chkbuze").is(":checked")) {
+        $("input[name=buzethis]").prop("disabled", false);
+        $("#chkyes").prop("checked", true);
+    }
     else $("input[name=buzethis]").prop("disabled", true);
 })
 
@@ -353,26 +359,28 @@ $("#schbtn").on('click', function() {
     else {
         var addr = $("#addr").val();
 
-        var weekday = ""; if($("#chkweekday").is(":checked")) weekday = "평일";
-        var saturday = ""; if($("#chksaturday").is(":checked")) saturday = "토요일";
-        var holiday = ""; if($("#chkholiday").is(":checked")) holiday = "공휴일";
+        var weekday = ''; if($("#chkweekday").is(":checked")) weekday = "yes";
+        var saturday = ''; if($("#chksaturday").is(":checked")) saturday = "yes";
+        var holiday = ''; if($("#chkholiday").is(":checked")) holiday = "yes";
 
-        var gubun = ""; if($("#chkgubun").is(":checked")) gubun = $("#chkpublic").is(":checked") ? "공영" : "민영";
-        var buze = ""; if($("#chkbuze").is(":checked")) buze = $("#chkyes").is(":checked") ? "요일제" : "미시행";
+        var gubun = ''; if($("#chkgubun").is(":checked")) gubun = $("#chkpublic").is(":checked") ? "공영" : "민영";
+        var buze = ''; if($("#chkbuze").is(":checked")) buze = $("#chkyes").is(":checked") ? "요일제" : "미시행";
 
-        location.href =
-            "/Park/find" +
-            "?addr=" + addr;
+        var qry = "/Park/find";
 //             "&shour=" + shour +
 //             "&ehour=" + ehour +
 //             "&satshour=" + satshour +
 //             "&satehour=" + satehour +
 //             "&holshour=" + holshour +
 //             "&holehour=" + holehour +
-//             "&weekday=" + weekday +
-//             "&saturday=" + saturday +
-//             "&holiday=" + holiday +
-//             "&gubun=" + gubun +
-//             "&buze=" + buze;
+
+        qry += "?addr=" + addr;
+        qry += "&weekday=" + weekday;
+        qry += "&saturday=" + saturday;
+        qry += "&holiday=" + holiday;
+        qry += "&gubun=" + gubun;
+        qry += "&buze=" + buze;
+
+        location.href = qry;
     }
 })

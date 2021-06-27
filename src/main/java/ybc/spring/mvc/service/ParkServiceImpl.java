@@ -24,29 +24,30 @@ public class ParkServiceImpl implements ParkService{
 //        params.put("satehour", satehour);
 //        params.put("holshour", holshour);
 //        params.put("holehour", holehour);
-        if(weekday != "") params.put("weekday", weekday);
-        if(saturday != "") params.put("saturday", saturday);
-        if(holiday != "") params.put("holiday", holiday);
-        if(gubun != "") params.put("gubun", gubun);
-        if(buze != "") params.put("buze", buze);
+        params.put("weekday", weekday);
+        params.put("saturday", saturday);
+        params.put("holiday", holiday);
+        params.put("gubun", gubun);
+        params.put("buze", buze);
         return pdao.selectPark(params);
     }
 
     @Override
     public int countPark(String addr, String weekday, String saturday, String holiday, String gubun, String buze) {
         Map<String, Object> params = new HashMap<>();
-        if(addr != "") params.put("addr", addr);
+        params.put("addr", addr);
 //        params.put("shour", shour);
 //        params.put("ehour", ehour);
 //        params.put("satshour", satshour);
 //        params.put("satehour", satehour);
 //        params.put("holshour", holshour);
 //        params.put("holehour", holehour);
-        if(weekday != "") params.put("weekday", weekday);
-        if(saturday != "") params.put("saturday", saturday);
-        if(holiday != "") params.put("holiday", holiday);
-        if(gubun != "") params.put("gubun", gubun);
-        if(buze != "") params.put("buze", buze);
+
+        params.put("weekday", weekday);
+        params.put("saturday", saturday);
+        params.put("holiday", holiday);
+        params.put("gubun", gubun);
+        params.put("buze", buze);
         return pdao.selectCnt(params);
     }
 }

@@ -6,7 +6,7 @@
         select *
         from Park
         where
-        <if test="addr != ''">(addr1 like concat('%', #{addr}, '%') or addr2 like concat('%', #{addr}, '%'))</if>
+        (addr1 like concat('%', #{addr}, '%') or addr2 like concat('%', #{addr}, '%'))
 <!--        <if test="shour != ''">shour = #{shour}</if>-->
 <!--        <if test="ehour != ''">ehour = #{ehour}</if>-->
 <!--        <if test="satshour != ''">satshour = #{satshour}</if>-->
@@ -14,23 +14,23 @@
 <!--        <if test="holshour != ''">holshour = #{holshour}</if>-->
 <!--        <if test="holehour != ''">holehour = #{holehour}</if>-->
 
-<!--        <if test="weekday != ''">and busday like concat('%', '평일', '%')</if>-->
-<!--        <if test="saturday != ''">and busday like concat('%', '토요일', '%')</if>-->
-<!--        <if test="holiday != ''">and busday like concat('%', '공휴일', '%')</if>-->
-<!--        <if test="gubun != ''">and gubun like #{gubun}</if>-->
-<!--        <if test="buze != ''">and buze like #{buze}</if>-->
+        <if test="weekday != ''">and busday like concat('%', '평일', '%')</if>
+        <if test="saturday != ''">and busday like concat('%', '토요일', '%')</if>
+        <if test="holiday != ''">and busday like concat('%', '공휴일', '%')</if>
+        and gubun like concat('%', #{gubun}, '%')
+        and buze like concat('%', #{buze}, '%')
     </select>
 
     <select id="selectCnt" statementType="PREPARED" parameterType="map" resultType="int">
         select count(*)
         from Park
         where
-        <if test="addr != ''">(addr1 like concat('%', #{addr}, '%') or addr2 like concat('%', #{addr}, '%'))</if>
-<!--        <if test="weekday != ''">and busday like concat('%', '평일', '%')</if>-->
-<!--        <if test="saturday != ''">and busday like concat('%', '토요일', '%')</if>-->
-<!--        <if test="holiday != ''">and busday like concat('%', '공휴일', '%')</if>-->
-<!--        <if test="gubun != ''">and gubun like #{gubun}</if>-->
-<!--        <if test="buze != ''">and buze like #{buze}</if>-->
+        (addr1 like concat('%', #{addr}, '%') or addr2 like concat('%', #{addr}, '%'))
+        <if test="weekday != ''">and busday like concat('%', '평일', '%')</if>
+        <if test="saturday != ''">and busday like concat('%', '토요일', '%')</if>
+        <if test="holiday != ''">and busday like concat('%', '공휴일', '%')</if>
+        and gubun like concat('%', #{gubun}, '%')
+        and buze like concat('%', #{buze}, '%')
     </select>
 
 </mapper>
