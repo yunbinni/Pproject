@@ -181,12 +181,29 @@
 
         <div class="row d-flex justify-content-center">
             <div class="col-1">
-                <input class="form-check-input" type="checkbox" value="gubunthis" id="chkpublic" disabled>
+                <input class="form-check-input" type="checkbox" value="gubunthis" id="chkpublic" name="gubunthis" disabled>
                 <label class="form-check-label" for="chkpublic"><h5>공영</h5></label>
             </div>
             <div class="col-1">
-                <input class="form-check-input" type="checkbox" value="gubunthis" id="chkprivate" disabled>
+                <input class="form-check-input" type="checkbox" value="gubunthis" id="chkprivate" name="gubunthis" disabled>
                 <label class="form-check-label" for="chkprivate"><h5>민영</h5></label>
+            </div>
+        </div>
+    </div><hr>
+
+    <%-- 요일제/미시행 구분 --%>
+    <div class="form-group">
+        <input class="form-check-input" type="checkbox" value="" id="chkbuze">
+        <label class="form-check-label" for="chkbuze">요일제</label>
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-1">
+                <input class="form-check-input" type="checkbox" value="gubunthis" id="chkyes" name="buzethis" disabled>
+                <label class="form-check-label" for="chkyes"><h5>시행</h5></label>
+            </div>
+            <div class="col-1">
+                <input class="form-check-input" type="checkbox" value="gubunthis" id="chkno" name="buzethis" disabled>
+                <label class="form-check-label" for="chkno"><h5>미시행</h5></label>
             </div>
         </div>
     </div><hr>
@@ -227,12 +244,18 @@
                     <div class="col">
                         평일 : ${p.shour} ~ ${p.ehour} <br>
                         토요일 : ${p.satshour} ~ ${p.satehour} <br>
-                        공휴일 : ${p.gongshour} ~ ${p.gongehour}
+                        공휴일 : ${p.holshour} ~ ${p.holehour}
                     </div>
 
                     <div class="col d-flex justify-content-end pt-5">
                         <c:if test="${p.buze eq '요일제'}">
                             <button class="btn btn-sm btn-danger m-1" style="height: 30px">${p.buze}</button>
+                        </c:if>
+                        <c:if test="${p.gubun eq '공영'}">
+                            <button class="btn btn-sm btn-success m-1" style="height: 30px">공영</button>
+                        </c:if>
+                        <c:if test="${p.gubun eq '민영'}">
+                            <button class="btn btn-sm btn-primary m-1" style="height: 30px">민영</button>
                         </c:if>
                         <button class="btn btn-sm btn-success m-1" style="height: 30px">지금가능!</button>
                     </div>

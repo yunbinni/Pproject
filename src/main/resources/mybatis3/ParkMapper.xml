@@ -5,29 +5,32 @@
     <select id="selectPark" statementType="PREPARED" parameterType="map" resultType="ybc.spring.mvc.vo.Park"> <!-- 이거 resultType 변해야하는지 테스트해보기 -->
         select *
         from Park
-        <if test="addr != '' or shour != '' or ehour != '' or satshour != '' or satehour != '' or holshour != '' or holehour != '' or weekday != '' or saturday != '' or holiday != '' or gubun != ''">
-            where
-        </if>
-        <if test="addr != ''">addr1 like concat('%', #{addr}, '%') or addr2 like concat('%', #{addr}, '%')</if>
+        where
+        <if test="addr != ''">(addr1 like concat('%', #{addr}, '%') or addr2 like concat('%', #{addr}, '%'))</if>
 <!--        <if test="shour != ''">shour = #{shour}</if>-->
 <!--        <if test="ehour != ''">ehour = #{ehour}</if>-->
 <!--        <if test="satshour != ''">satshour = #{satshour}</if>-->
 <!--        <if test="satehour != ''">satehour = #{satehour}</if>-->
 <!--        <if test="holshour != ''">holshour = #{holshour}</if>-->
 <!--        <if test="holehour != ''">holehour = #{holehour}</if>-->
-<!--        <if test="weekday != ''"> busday like concat('%', #{weekday}, '%')</if>-->
-<!--        <if test="saturday != ''"> busday like concat('%', #{saturday}, '%')</if>-->
-<!--        <if test="holiday != ''"> busday like concat('%', #{holiday}, '%')</if>-->
-<!--        <if test="gubun != ''"> gubun = #{gubun}</if>-->
+
+<!--        <if test="weekday != ''">and busday like concat('%', '평일', '%')</if>-->
+<!--        <if test="saturday != ''">and busday like concat('%', '토요일', '%')</if>-->
+<!--        <if test="holiday != ''">and busday like concat('%', '공휴일', '%')</if>-->
+<!--        <if test="gubun != ''">and gubun like #{gubun}</if>-->
+<!--        <if test="buze != ''">and buze like #{buze}</if>-->
     </select>
 
     <select id="selectCnt" statementType="PREPARED" parameterType="map" resultType="int">
         select count(*)
         from Park
-        <if test="addr != '' or shour != '' or ehour != '' or satshour != '' or satehour != '' or holshour != '' or holehour != '' or weekday != '' or saturday != '' or holiday != '' or gubun != ''">
-            where
-        </if>
-        <if test="addr != ''">addr1 like concat('%', #{addr}, '%') or addr2 like concat('%', #{addr}, '%')</if>
+        where
+        <if test="addr != ''">(addr1 like concat('%', #{addr}, '%') or addr2 like concat('%', #{addr}, '%'))</if>
+<!--        <if test="weekday != ''">and busday like concat('%', '평일', '%')</if>-->
+<!--        <if test="saturday != ''">and busday like concat('%', '토요일', '%')</if>-->
+<!--        <if test="holiday != ''">and busday like concat('%', '공휴일', '%')</if>-->
+<!--        <if test="gubun != ''">and gubun like #{gubun}</if>-->
+<!--        <if test="buze != ''">and buze like #{buze}</if>-->
     </select>
 
 </mapper>

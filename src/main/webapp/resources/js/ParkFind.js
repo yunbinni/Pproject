@@ -63,8 +63,13 @@ $("#anytime3").on('change', function() {
 
 // 구분 체크박스
 $("#chkgubun").on('change', function() {
-    if($("#chkgubun").is(":checked") == true) $("input[value=gubunthis]").prop("disabled", false);
-    else $("input[value=gubunthis]").prop("disabled", true);
+    if($("#chkgubun").is(":checked") == true) $("input[name=gubunthis]").prop("disabled", false);
+    else $("input[name=gubunthis]").prop("disabled", true);
+})
+// 부제(요일제) 체크박스
+$("#chkbuze").on('change', function() {
+    if($("#chkbuze").is(":checked")) $("input[name=buzethis]").prop("disabled", false);
+    else $("input[name=buzethis]").prop("disabled", true);
 })
 
 // 운영시간에서 오전/오후 바뀌면 그에 따라 드롭다운 리스트 변경
@@ -285,83 +290,89 @@ $("#ampmHoliday2").on('change', function() {
     else $("#ampmHoliday2").next().replaceWith(amhour);
 })
 
+// 구분에서 공영, 민영 모두 체크못하도록 방지
+$("#chkpublic").on('change', function() {
+    if($("#chkprivate").is(":checked")) {
+        $("#chkprivate").prop("checked", false);
+        $("#chkpublic").prop("checked", true);
+    }
+})
+$("#chkprivate").on('change', function() {
+    if($("#chkpublic").is(":checked")) {
+        $("#chkpublic").prop("checked", false);
+        $("#chkprivate").prop("checked", true);
+    }
+})
+
+// 부제(요일제)에서 시행, 미시행 모두 체크못하도록 방지
+$("#chkyes").on('change', function() {
+    if($("#chkno").is(":checked")) {
+        $("#chkno").prop("checked", false);
+        $("#chkyes").prop("checked", true);
+    }
+})
+$("#chkno").on('change', function() {
+    if($("#chkyes").is(":checked")) {
+        $("#chkyes").prop("checked", false);
+        $("#chkno").prop("checked", true);
+    }
+})
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 $("#schbtn").on('click', function() {
     var chkaddr = $("#chkaddr");
     var chkbushour = $("#chkbushour");
     var chkgubun = $("#chkgubun");
-
+    var chkbuze = $("#chkbuze");
+//
     // 검색조건이 모순이지 않게 필터링
     if(
-        chkaddr.is(":checked") == false &&
+        chkaddr.is(":checked") == false  &&
         chkbushour.is(":checked") == false &&
-        chkgubun.is(":checked") == false
+        chkgubun.is(":checked") == false &&
+        chkbuze.is(":checked") == false
     ) alert("최소 1개 이상의 조건을 선택하여 주시기 바랍니다.");
+
 
     else if (chkaddr.is(":checked") == true && $("#addr").val().length < 2)
         alert("주소창에 2글자 이상 작성하여 주시기 바랍니다.");
 
-    else if ($("#chkweekday").is(":checked") == true && $("#chkweekday").next().is(":checked") == false &&
+    else if ($("#chkweekday").is(":checked") == true && $("#anytime1").is(":checked") == false &&
         parseInt($("#ampmWeekday1").next().val().substr(0, 2)) >= parseInt($("#ampmWeekday2").next().val().substr(0, 2)))
         alert("시작시간이 종료시간보다 크거나 같을 수 없습니다 : (평일)");
 
-    else if ($("#chksaturday").is(":checked") == true && $("#chksaturday").next().is(":checked") == false &&
+    else if ($("#chksaturday").is(":checked") == true && $("#anytime2").is(":checked") == false &&
         parseInt($("#ampmSaturday1").next().val().substr(0, 2)) >= parseInt($("#ampmSaturday2").next().val().substr(0, 2)))
         alert("시작시간이 종료시간보다 크거나 같을 수 없습니다 : (토요일)");
 
-    else if ($("#chkholiday").is(":checked") == true && $("#chkholiday").next().is(":checked") == false &&
+    else if ($("#chkholiday").is(":checked") == true && $("#anytime3").is(":checked") == false &&
         parseInt($("#ampmHoliday1").next().val().substr(0, 2)) >= parseInt($("#ampmHoliday2").next().val().substr(0, 2)))
         alert("시작시간이 종료시간보다 크거나 같을 수 없습니다 : (공휴일)");
 
+
     else {
-        // 변수 동적생성
-        // 주소 변수 생성
-        var addr = "";
-        if (chkaddr.is(":checked") == true) addr = $("#addr").val();
+        var addr = $("#addr").val();
 
-        // 운영시간 변수 생성
-        var shour = ""; var ehour = ""; var satshour = ""; var satehour = ""; var holshour = ""; var holehour = "";
-        var weekday = ""; var saturday = ""; var holiday = "";
-        if (chkbushour.is(":checked") == true) {
-            if ($("#chkweekday").is(":checked") == true && $("#anytime1").is(":checked") == false) {
-                var shour = $("#ampmWeekday1").next().val();
-                var ehour = $("#ampmWeekday2").next().val();
-            } else if ($("#chkweekday").is(":checked") == true && $("#anytime1").is(":checked") == true) {
-                weekday = "평일"
-            }
-            if ($("#chksaturday").is(":checked") == true && $("#anytime2").is(":checked") == false) {
-                var satshour = $("#ampmSaturday1").next().val();
-                var satehour = $("#ampmSaturday2").next().val();
-            } else if ($("#chksaturday").is(":checked") == true && $("#anytime2").is(":checked") == true) {
-                saturday = "토요일";
-            }
-            if ($("#chkholiday").is(":checked") == true && $("#anytime3").is(":checked") == false) {
-                var holshour = $("#ampmHoliday1").next().val();
-                var holehour = $("#ampmHoliday1").next().val();
-            } else if ($("#chkholiday").is(":checked") == true && $("#anytime3").is(":checked") == true) {
-                holiday = "공휴일";
-            }
-        }
+        var weekday = ""; if($("#chkweekday").is(":checked")) weekday = "평일";
+        var saturday = ""; if($("#chksaturday").is(":checked")) saturday = "토요일";
+        var holiday = ""; if($("#chkholiday").is(":checked")) holiday = "공휴일";
 
-        // 구분 변수 생성
-        var gubun = "";
-        if ($("#chkpublic").is(":checked") == true && $("#chkprivate").is(":checked") == false)
-            gubun = "공영";
-        else if ($("#chkpublic").is(":checked") == false && $("#chkprivate").is(":checked") == true)
-            gubun = "민영";
+        var gubun = ""; if($("#chkgubun").is(":checked")) gubun = $("#chkpublic").is(":checked") ? "공영" : "민영";
+        var buze = ""; if($("#chkbuze").is(":checked")) buze = $("#chkyes").is(":checked") ? "요일제" : "미시행";
 
         location.href =
             "/Park/find" +
-            "?addr=" + addr +
-            "&shour=" + shour +
-            "&ehour=" + ehour +
-            "&satshour=" + satshour +
-            "&satehour=" + satehour +
-            "&holshour=" + holshour +
-            "&holehour=" + holehour +
-            "&weekday=" + weekday +
-            "&saturday=" + saturday +
-            "&holiday=" + holiday +
-            "&gubun=" + gubun;
+            "?addr=" + addr;
+//             "&shour=" + shour +
+//             "&ehour=" + ehour +
+//             "&satshour=" + satshour +
+//             "&satehour=" + satehour +
+//             "&holshour=" + holshour +
+//             "&holehour=" + holehour +
+//             "&weekday=" + weekday +
+//             "&saturday=" + saturday +
+//             "&holiday=" + holiday +
+//             "&gubun=" + gubun +
+//             "&buze=" + buze;
     }
 })

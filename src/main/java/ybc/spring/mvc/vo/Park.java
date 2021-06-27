@@ -29,8 +29,8 @@ public class Park {
     protected String detail;            // 특기사항
     protected String operator;          // 관리기관명
     protected String telephone;         // 전화번호
-    protected double lng;               // 위도
-    protected double lat;               // 경도
+    protected double 위도;               // 위도
+    protected double 경도;               // 경도
     protected String lastdatarenewal;   // 데이터기준일자
     protected String providercode;      // 제공기관코드
     protected String providername;      // 제공기관명
@@ -259,20 +259,20 @@ public class Park {
         this.telephone = telephone;
     }
 
-    public double getLng() {
-        return lng;
+    public double get위도() {
+        return 위도;
     }
 
-    public void setLng(double lng) {
-        this.lng = lng;
+    public void set위도(double 위도) {
+        this.위도 = 위도;
     }
 
-    public double getLat() {
-        return lat;
+    public double get경도() {
+        return 경도;
     }
 
-    public void setLat(double lat) {
-        this.lat = lat;
+    public void set경도(double 경도) {
+        this.경도 = 경도;
     }
 
     public String getLastdatarenewal() {
