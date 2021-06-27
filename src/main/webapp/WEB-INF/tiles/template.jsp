@@ -11,6 +11,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
+    <!-- user define CSS -->
+    <link rel="stylesheet" href="/css/join.css" />
     <link rel="stylesheet" href="/css/base.css" />
 
     <title>템플릿 title</title>
@@ -30,7 +32,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h3>로그인</h3>
-                    <button type="button" ig="lgmbtn"
+                    <button type="button" id="lgmbtn"
                             class="btn btn-light">닫기</button>
                 </div>
                 
@@ -81,7 +83,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/fbefdbe8db.js" crossorigin="anonymous"></script>
+
     <script src="/js/join.js"></script>
+    <script src="/js/loginout.js"></script>
+    <script src="/js/myinfo.js"></script>
 
   </body>
 </html>
