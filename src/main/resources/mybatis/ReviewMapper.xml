@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="review">
+
+    <select id="insertReview" statementType="PREPARED"
+            parameterType="ybc.spring.mvc.vo.Review">
+        insert into review(loc, title, userid, contents, fnames, fsizes, uuid)
+        values (#{loc}, #{title}, #{userid}, #{contents}, #{fnames}, #{fsizes}, #{uuid})
+    </select> <!-- post -->
+
+    <select id="readFnames" statementType="PREPARED"
+            parameterType="String" resultType="String">
+        select fnames from review where rvno = ${rvno}
+    </select>
+
+    <select id="readFsizes" statementType="PREPARED"
+            parameterType="String" resultType="String">
+        select fsizes from review where rvno = ${rvno}
+    </select>
+
+    <select id="selectReview" statementType="PREPARED"
+            parameterType="int"
+            resultType="ybc.spring.mvc.vo.Review">
+        select rvno, loc, title, userid, regdate, views, likes
+        from review order by rvno desc limit #{snum}, 30
+    </select>
+
+    <select id="countReview" statementType="PREPARED"
+            resultType="int">
+        select count(rvno) cnt from review
+    </select>
+
+    <select id="findSelect" statementType="PREPARED"
+            parameterType="map"
+            resultType="ybc.spring.mvc.vo.Review">
+        select rvno, title, userid, regdate, views, likes from review
+                <if test="ftype != 'ttlcon'" >
+                     where ${ftype} like concat('%', #{fkey}, '%') </if>
+                <if test="ftype == 'ttlcon'">
+                     where title like concat('%', #{fkey}, '%') or
+                    contetns like concat('%', #{fkey}, '%')</if>
+        order by rvno desc limit #{snum}, 30
+    </select>
+
+    <select id="findSelectCount" statementType="PREPARED"
+            parameterType="map" resultType="int">
+        select count(rvno) cnt from review
+        <if test="ftype != 'ttlcon'">
+            where ${ftype} like concat('%', #{fkey}, '%') </if>
+        <if test="ftype == 'ttlcon'">
+            where title like concat('%', #{fkey}, '%') or
+            contents like concat('%', #{fkey}, '%') </if>
+    </select>
+
+    <select id="selectOne" statementType="PREPARED"
+            parameterType="String" resultType="ybc.spring.mvc.vo.Review">
+        select * from review where rvno = #{rvno}
+    </select> <!-- detailed post -->
+
+    <select id="selectPrev" statementType="PREPARED"
+            parameterType="String" resultType="String">
+        select prev from
+            (select
+                rvno,
+                lead(rvno) over (order by rvno desc) prev
+            from review) new
+        where rvno = #{rvno}
+    </select>
+
+    <select id="selectNext" statementType="PREPARED"
+            parameterType="String" resultType="String">
+        select next from
+            (select rvno, lag(rvno) over (order by rvno desc) next
+             from review) new
+        where rvno = #{rvno}
+    </select>
+
+    <update id="updateReview" statementType="PREPARED"
+            parameterType="ybc.spring.mvc.vo.Review">
+        update review set title= #{title}, contents=#{contents}
+            <if test="todie != ''">
+                ,fnames=#{fnames}, fsizes=#{fsizes}
+            </if>
+        where rvno=#{rvno}
+    </update>
+
+    <update id="viewsReview" statementType="PREPARED"
+            parameterType="String">
+        update review set views = views + 1 where rvno = #{rvno}
+    </update>
+
+    <update id="upLikes" statementType="PREPARED"
+            parameterType="String">
+        update review set likes = likes + 1 where rvno =#{rvno}
+    </update>
+
+    <update id="noLikes" statementType="PREPARED"
+            parameterType="String">
+        update review set nlikes = nlikes + 1 where rvno = #{rvno}
+    </update>
+
+    <delete id="deleteRv" statementType="PREPARED"
+            parameterType="String">
+        delete from review where rvno = #{rvno}
+    </delete>
+
+    <select id="findFSelect" statementType="PREPARED"
+            parameterType="map"
+            resultType="ybc.spring.mvc.vo.Review">
+        select rvno, loc, title, userid, regdate, views, likes from review
+        <if test="loc == 'loc'">
+            <if test="ftype != 'ttlcon'" >
+                where ${ftype} like concat('%', #{fkey}, '%') </if>
+            <if test="ftype == 'ttlcon'">
+                where title like concat('%', #{fkey}, '%') or
+                contetns like concat('%', #{fkey}, '%')</if>
+        </if>
+        order by rvno desc limit #{snum}, 30
+    </select>
+
+    <select id="findFSelectCount" statementType="PREPARED"
+            parameterType="map" resultType="int">
+        select count(rvno) cnt from review
+        <if test="loc == 'loc'">
+            <if test="ftype != 'ttlcon'">
+                where ${ftype} like concat('%', #{fkey}, '%') </if>
+            <if test="ftype == 'ttlcon'">
+                where title like concat('%', #{fkey}, '%') or
+                contents like concat('%', #{fkey}, '%') </if>
+        </if>
+    </select>
+</mapper>

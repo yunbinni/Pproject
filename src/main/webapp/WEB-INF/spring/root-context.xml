@@ -11,14 +11,22 @@
 <!--          p:initialSize="10" p:maxTotal="7"-->
 <!--          p:maxIdle="3" />-->
 
-<!--    &lt;!&ndash; myBatis 설정 &ndash;&gt;-->
-<!--    <bean id="sqlSessionFactory"-->
-<!--          class="org.mybatis.spring.SqlSessionFactoryBean"-->
-<!--          p:dataSource-ref="dbcpDataSource"-->
-<!--          p:mapperLocations="classpath:mybatis3/*Mapper.xml" />-->
+    <bean id="dbcpDataSource"
+          class="org.apache.commons.dbcp2.BasicDataSource"
+          p:driverClassName="org.mariadb.jdbc.Driver"
+          p:url="jdbc:mariadb://bigdata.ckwuhzosrgyo.ap-northeast-2.rds.amazonaws.com:3306/playground"
+          p:username="playground" p:password="bigdata2020"
+          p:initialSize="10" p:maxTotal="7"
+          p:maxIdle="3" />
 
-<!--    <bean id="sqlSession"-->
-<!--          class="org.mybatis.spring.SqlSessionTemplate">-->
-<!--        <constructor-arg ref="sqlSessionFactory" index="0" />-->
-<!--    </bean>-->
+    <!-- myBatis 설정 -->
+    <bean id="sqlSessionFactory"
+          class="org.mybatis.spring.SqlSessionFactoryBean"
+          p:dataSource-ref="dbcpDataSource"
+          p:mapperLocations="classpath:mybatis/*Mapper.xml" />
+
+    <bean id="sqlSession"
+          class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg ref="sqlSessionFactory" index="0" />
+    </bean>
 </beans>

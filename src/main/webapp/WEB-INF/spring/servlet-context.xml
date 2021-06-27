@@ -37,9 +37,9 @@
 
 
     <!-- 파일업로드 리졸버 설정 : 자료실/갤러리 예제에 사용 -->
-    <!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <property name="maxUploadSize" value="10485760" /> 10MB 제한
-    </bean>-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="10485760" />
+    </bean>
 
 
     <context:component-scan base-package="ybc.spring.mvc" />
