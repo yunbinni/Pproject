@@ -15,15 +15,15 @@ public class ParkServiceImpl implements ParkService{
     private ParkDAO pdao;
 
     @Override
-    public List<Park> readPark(String addr, String weekday, String saturday, String holiday, String gubun, String buze) {
+    public List<Park> readPark(String addr, String shour, String ehour, String satshour, String satehour, String holshour, String holehour, String weekday, String saturday, String holiday, String gubun, String buze) {
         Map<String, Object> params = new HashMap<>();
-        if(addr != "") params.put("addr", addr);
-//        if(shour != "") params.put("shour", shour);
-//        if(ehour != "") params.put("ehour", ehour);
-//        params.put("satshour", satshour);
-//        params.put("satehour", satehour);
-//        params.put("holshour", holshour);
-//        params.put("holehour", holehour);
+        params.put("addr", addr);
+        params.put("shour", shour);
+        params.put("ehour", ehour);
+        params.put("satshour", satshour);
+        params.put("satehour", satehour);
+        params.put("holshour", holshour);
+        params.put("holehour", holehour);
         params.put("weekday", weekday);
         params.put("saturday", saturday);
         params.put("holiday", holiday);
@@ -33,16 +33,15 @@ public class ParkServiceImpl implements ParkService{
     }
 
     @Override
-    public int countPark(String addr, String weekday, String saturday, String holiday, String gubun, String buze) {
+    public int countPark(String addr, String shour, String ehour, String satshour, String satehour, String holshour, String holehour, String weekday, String saturday, String holiday, String gubun, String buze) {
         Map<String, Object> params = new HashMap<>();
         params.put("addr", addr);
-//        params.put("shour", shour);
-//        params.put("ehour", ehour);
-//        params.put("satshour", satshour);
-//        params.put("satehour", satehour);
-//        params.put("holshour", holshour);
-//        params.put("holehour", holehour);
-
+        params.put("shour", shour);
+        params.put("ehour", ehour);
+        params.put("satshour", satshour);
+        params.put("satehour", satehour);
+        params.put("holshour", holshour);
+        params.put("holehour", holehour);
         params.put("weekday", weekday);
         params.put("saturday", saturday);
         params.put("holiday", holiday);

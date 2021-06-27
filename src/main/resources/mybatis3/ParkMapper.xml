@@ -7,18 +7,18 @@
         from Park
         where
         (addr1 like concat('%', #{addr}, '%') or addr2 like concat('%', #{addr}, '%'))
-<!--        <if test="shour != ''">shour = #{shour}</if>-->
-<!--        <if test="ehour != ''">ehour = #{ehour}</if>-->
-<!--        <if test="satshour != ''">satshour = #{satshour}</if>-->
-<!--        <if test="satehour != ''">satehour = #{satehour}</if>-->
-<!--        <if test="holshour != ''">holshour = #{holshour}</if>-->
-<!--        <if test="holehour != ''">holehour = #{holehour}</if>-->
+        <if test="shour != ''">and cast(substring_index(#{shour}, ':', 1) as int) <![CDATA[<=]]> cast(substring_index(shour, ':', 1) as int)</if>
+        <if test="ehour != ''">and cast(substring_index(#{ehour}, ':', 1) as int) <![CDATA[>=]]> cast(substring_index(ehour, ':', 1) as int)</if>
+        <if test="satshour != ''">and cast(substring_index(#{satshour}, ':', 1) as int) <![CDATA[<=]]> cast(substring_index(satshour, ':', 1) as int)</if>
+        <if test="satehour != ''">and cast(substring_index(#{satehour}, ':', 1) as int) <![CDATA[>=]]> cast(substring_index(satehour, ':', 1) as int)</if>
+        <if test="holshour != ''">and cast(substring_index(#{holshour}, ':', 1) as int) <![CDATA[<=]]> cast(substring_index(holshour, ':', 1) as int)</if>
+        <if test="holehour != ''">and cast(substring_index(#{holehour}, ':', 1) as int) <![CDATA[>=]]> cast(substring_index(holehour, ':', 1) as int)</if>
 
         <if test="weekday != ''">and busday like concat('%', '평일', '%')</if>
         <if test="saturday != ''">and busday like concat('%', '토요일', '%')</if>
         <if test="holiday != ''">and busday like concat('%', '공휴일', '%')</if>
-        and gubun like concat('%', #{gubun}, '%')
-        and buze like concat('%', #{buze}, '%')
+        <if test="gubun != ''">and gubun like concat('%', #{gubun}, '%')</if>
+        <if test="buze != ''">and buze like concat('%', #{buze}, '%')</if>
     </select>
 
     <select id="selectCnt" statementType="PREPARED" parameterType="map" resultType="int">
@@ -26,11 +26,18 @@
         from Park
         where
         (addr1 like concat('%', #{addr}, '%') or addr2 like concat('%', #{addr}, '%'))
+        <if test="shour != ''">and cast(substring_index(#{shour}, ':', 1) as int) <![CDATA[<=]]> cast(substring_index(shour, ':', 1) as int)</if>
+        <if test="ehour != ''">and cast(substring_index(#{ehour}, ':', 1) as int) <![CDATA[>=]]> cast(substring_index(ehour, ':', 1) as int)</if>
+        <if test="satshour != ''">and cast(substring_index(#{satshour}, ':', 1) as int) <![CDATA[<=]]> cast(substring_index(satshour, ':', 1) as int)</if>
+        <if test="satehour != ''">and cast(substring_index(#{satehour}, ':', 1) as int) <![CDATA[>=]]> cast(substring_index(satehour, ':', 1) as int)</if>
+        <if test="holshour != ''">and cast(substring_index(#{holshour}, ':', 1) as int) <![CDATA[<=]]> cast(substring_index(holshour, ':', 1) as int)</if>
+        <if test="holehour != ''">and cast(substring_index(#{holehour}, ':', 1) as int) <![CDATA[>=]]> cast(substring_index(holehour, ':', 1) as int)</if>
+
         <if test="weekday != ''">and busday like concat('%', '평일', '%')</if>
         <if test="saturday != ''">and busday like concat('%', '토요일', '%')</if>
         <if test="holiday != ''">and busday like concat('%', '공휴일', '%')</if>
-        and gubun like concat('%', #{gubun}, '%')
-        and buze like concat('%', #{buze}, '%')
+        <if test="gubun != ''">and gubun like concat('%', #{gubun}, '%')</if>
+        <if test="buze != ''">and buze like concat('%', #{buze}, '%')</if>
     </select>
 
 </mapper>

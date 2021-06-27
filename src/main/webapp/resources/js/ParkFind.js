@@ -67,7 +67,10 @@ $("#chkgubun").on('change', function() {
         $("input[name=gubunthis]").prop("disabled", false);
         $("#chkpublic").prop("checked", true);
     }
-    else $("input[name=gubunthis]").prop("disabled", true);
+    else {
+        $("input[name=gubunthis]").prop("checked", false);
+        $("input[name=gubunthis]").prop("disabled", true);
+    }
 })
 // 부제(요일제) 체크박스
 $("#chkbuze").on('change', function() {
@@ -75,7 +78,10 @@ $("#chkbuze").on('change', function() {
         $("input[name=buzethis]").prop("disabled", false);
         $("#chkyes").prop("checked", true);
     }
-    else $("input[name=buzethis]").prop("disabled", true);
+    else {
+        $("input[name=buzethis]").prop("checked", false);
+        $("input[name=buzethis]").prop("disabled", true);
+    }
 })
 
 // 운영시간에서 오전/오후 바뀌면 그에 따라 드롭다운 리스트 변경
@@ -359,6 +365,21 @@ $("#schbtn").on('click', function() {
     else {
         var addr = $("#addr").val();
 
+        var shour = ''; var ehour = ''; var satshour = ''; var satehour = ''; var holshour = ''; var holehour = '';
+        if($("#chkweekday").is(":checked") == true && $("#anytime1").is(":checked") == false) {
+            shour = $("#ampmWeekday1").next().val();
+            ehour = $("#ampmWeekday2").next().val();
+        }
+        if($("#chksaturday").is(":checked") == true && $("#anytime2").is(":checked") == false) {
+            satshour = $("#ampmSaturday1").next().val();
+            satehour = $("#ampmSaturday2").next().val();
+        }
+        if($("#chkholiday").is(":checked") == true && $("#anytime3").is(":checked") == false) {
+            holshour = $("#ampmHoliday1").next().val();
+            holehour = $("#ampmHoliday2").next().val();
+        }
+
+
         var weekday = ''; if($("#chkweekday").is(":checked")) weekday = "yes";
         var saturday = ''; if($("#chksaturday").is(":checked")) saturday = "yes";
         var holiday = ''; if($("#chkholiday").is(":checked")) holiday = "yes";
@@ -367,14 +388,14 @@ $("#schbtn").on('click', function() {
         var buze = ''; if($("#chkbuze").is(":checked")) buze = $("#chkyes").is(":checked") ? "요일제" : "미시행";
 
         var qry = "/Park/find";
-//             "&shour=" + shour +
-//             "&ehour=" + ehour +
-//             "&satshour=" + satshour +
-//             "&satehour=" + satehour +
-//             "&holshour=" + holshour +
-//             "&holehour=" + holehour +
 
         qry += "?addr=" + addr;
+        qry += "&shour=" + shour;
+        qry += "&ehour=" + ehour;
+        qry += "&satshour=" + satshour;
+        qry += "&satehour=" + satehour;
+        qry += "&holshour=" + holshour;
+        qry += "&holehour=" + holehour;
         qry += "&weekday=" + weekday;
         qry += "&saturday=" + saturday;
         qry += "&holiday=" + holiday;
