@@ -15,7 +15,7 @@
     <div class="form-group">
         <input class="form-check-input" type="checkbox" id="chkaddr">
         <label class="form-check-label" for="chkaddr">주소</label>
-        <input type="text" class="form-control" id="addr" readonly>
+        <input type="text" class="form-control" id="addr" placeholder="도로명주소 또는 지번주소를 입력하여 주십시오." readonly>
     </div><hr>
 
     <%-- 운영시간 --%>

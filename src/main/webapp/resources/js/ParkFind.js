@@ -355,6 +355,7 @@ $("#chkno").on('change', function() {
 })
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 다른 파일로 값을 보낼 땐 함수화
 $("#schbtn").on('click', function() {
     var chkaddr = $("#chkaddr");
     var chkbushour = $("#chkbushour");
@@ -439,6 +440,8 @@ $("#schbtn").on('click', function() {
         qry += "&cash=" + cash;
         qry += "&card=" + card;
         qry += "&others" + others;
+
+        console.log($("#addr").val());
 
         location.href = qry;
     }
