@@ -47,16 +47,14 @@ public class JoinController {
     }
 
 
+
     @RequestMapping ("/join/myinfo")
-    public ModelAndView myinfo(String userid, ModelAndView mv) {
+    public ModelAndView myinfo(HttpSession sess, ModelAndView mv) {
 
-        // Member m = msrv.readOneMember((String)sess.getAttribute("userid"));
-
+        Member m = msrv.readOneMember((String)sess.getAttribute("userid"));
 
         mv.setViewName("join/myinfo.tiles");
-        mv.addObject("muid", msrv.readOneMember(userid));
-
-        System.out.println(msrv.readOneMember(userid));
+        mv.addObject("m", m);
 
         return mv;
     }
@@ -86,8 +84,9 @@ public class JoinController {
 
 
     @PostMapping("/join/login")
-    public void login(Member m, HttpSession sess, 
-                        HttpServletResponse response) {
+    public ModelAndView login(Member m, HttpSession sess,
+                        HttpServletResponse response,
+                              ModelAndView mv) {
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter writer = null;
         
@@ -99,6 +98,10 @@ public class JoinController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            sess.setAttribute("userid", m.getUserid());
+            mv.setViewName("redirect:join/myinfo");
+
             writer.println("<script>location.href='"+page+"';</script>");
             writer.close();
         } else {
@@ -114,8 +117,9 @@ public class JoinController {
             writer.close();
         }
 
-    }
+        return mv;
 
+    }
 
     @GetMapping("/join/logout")
     public String logout(HttpSession sess) {

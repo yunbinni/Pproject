@@ -167,32 +167,32 @@
                         <label class="col-2 col-form-label text-primary text-right" >
                             주차장 선호도</label>
                         <div class="custom-control custom-checkbox custom-control-inline">
-                            <input type="checkbox" name="pref" class="custom-control-input" id="pdist" value="pdist">
+                            <input type="checkbox" name="hpref" class="custom-control-input" id="pdist" value="거리">
                             <label for="pdist" class="custom-control-label">
                                  거리</label>
                         </div>
                         <div class="custom-control custom-checkbox custom-control-inline">
-                            <input type="checkbox" name="pref" class="custom-control-input" id="pfee" value="pfee">
+                            <input type="checkbox" name="hpref" class="custom-control-input" id="pfee" value="요금">
                             <label for="pfee" class="custom-control-label">
                                 요금</label>
                         </div>
                         <div class="custom-control custom-checkbox custom-control-inline">
-                            <input type="checkbox" name="pref" class="custom-control-input" id="pvalet" value="pvalet">
+                            <input type="checkbox" name="hpref" class="custom-control-input" id="pvalet" value="발렛여부">
                             <label for="pvalet" class="custom-control-label">
                                 발렛여부</label>
                         </div>
                         <div class="custom-control custom-checkbox custom-control-inline">
-                            <input type="checkbox" name="pref" class="custom-control-input" id="pday" value="pday">
+                            <input type="checkbox" name="hpref" class="custom-control-input" id="pday" value="요일">
                             <label for="pday" class="custom-control-label">
                                 요일</label>
                         </div>
                         <div class="custom-control custom-checkbox custom-control-inline">
-                            <input type="checkbox" name="pref" class="custom-control-input" id="pgrd" value="pgrd">
+                            <input type="checkbox" name="hpref" class="custom-control-input" id="pgrd" value="지상">
                             <label for="pgrd" class="custom-control-label">
                                 지상</label>
                         </div>
                         <div class="custom-control custom-checkbox custom-control-inline">
-                            <input type="checkbox" name="pref" class="custom-control-input" id="pund" value="pund">
+                            <input type="checkbox" name="hpref" class="custom-control-input" id="pund" value="지하">
                             <label for="pund" class="custom-control-label">
                                 지하</label>
                         </div>
@@ -227,7 +227,7 @@
             <input type="hidden" name="zipcode" id="zipcode">
             <input type="hidden" name="email" id="email">
             <input type="hidden" name="cellphone" id="cellphone">
-            <input type="hidden" name="hphone2" id="hphone">
+            <input type="hidden" name="hphone" id="hphone">
             <input type="hidden" name="pref" id="pref">
 
         </form>

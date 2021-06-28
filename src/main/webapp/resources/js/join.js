@@ -363,6 +363,9 @@ function checkjumin() {
 }
 
 // email check
+$('#email1').on('change', function (){
+    checkemail2();
+});
 $('#email2').on('change', function (){
     checkemail2();
 });
@@ -483,14 +486,13 @@ $('#joinokbtn').on('click', function () {
         alert('이메일을 입력하세요.');
     else if ( $('#tel1').val() == '' || $('#tel2').val() == '' || $('#tel3').val() == '' )
         alert('전화번호를 입력하세요.');
-    else if ( $('#htel2').val() != '' || $('#htel3').val() != '' ) {
-        let val = $('#htel1 option:selected').text();
-
-        if (val == '-지역번호-') {
-            alert('지역번호를 선택하세요.');
+    else if ($('#htel1').val() == '-지역번호-') {
+        if ($('#htel2').val() == '' || $('#htel3').val() == '' ) {
+            $('#htel1').val(null);
+        } else {
+            alert('지역번호를 선택해주세요.');
         }
-    }
-    else if ( grecaptcha.getResponse() == '' )
+    } else if ( grecaptcha.getResponse() == '' )
         alert('자동입력 방지를 확인하세요.');
     else {
         $('#jumin').val($('#jumin1').val() + '-' + $('#jumin2').val() );
@@ -499,6 +501,18 @@ $('#joinokbtn').on('click', function () {
         $('#cellphone').val($('#tel1').val() + '-' + $('#tel2').val() + '-' + $('#tel3').val() );
         $('#hphone').val($('#htel1').val() + '-' + $('#htel2').val() + '-' + $('#htel3').val() );
 
+        let chkboxes = document.getElementsByName("hpref");
+        let result = '';
+
+        for(let i = 0; i < chkboxes.length; i++) {
+            if(chkboxes[i].checked) {
+                result += chkboxes[i].value + " ";
+            }
+        }
+
+        $('#pref').val(result);
+        console.log($('#pref').val());
+
         const frm = $('#joinmefrm');
         frm.attr('action', '/join/joinok');
         frm.attr('method', 'post');
@@ -506,7 +520,6 @@ $('#joinokbtn').on('click', function () {
 
     }
 });
-
 
 
 // show zipcode
@@ -571,6 +584,9 @@ $('#sendzip').on('click', function () {
     $('#zipmodal').modal('hide');
 
 });
+
+
+
 
 // check 정규식
 function isName(asName) {

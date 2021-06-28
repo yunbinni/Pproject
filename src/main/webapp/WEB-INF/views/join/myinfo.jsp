@@ -1,6 +1,7 @@
 <%@ page pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <div id="main">
     <!-- 메인 타이틀 -->
     <div>
@@ -11,25 +12,44 @@
 
     <!-- 마이페이지 폼 -->
     <div class="card card-body bg-light">
+        <h3>마이페이지</h3>
         <form name="myinfofrm" id="myinfofrm">
             <div class="row">
                 <div class="col-11 offset-1">
-                    <div class="form-group row">
-                        <span class="col text-center">
-                            <h2>회원정보</h2>
-                        <div id="myinfo">
+                        <div class="form-group row">
+                            <label class="col-4 col-form-label text-primary text-right">
+                                아이디 </label>
+                            <input type="text" class="border-primary form-control col-4"
+                                value="${sessionScope.userid}" readonly>
+                        </div> <!-- 아이디 -->
 
-                            <div><span class="label">아이디</span>
-                                <span>${muid.userid}</span></div>
-                            <div><span class="label">이름</span>
-                                <span>${muid.name}</span></div>
-                            <div><span class="label">이메일</span>
-                                <span>${muid.email}</span></div>
-                            <div><span class="label">가입일</span>
-                                <span>${muid.regdate}</span></div>
-                        </div>
-                        </span>
-                    </div>
+                        <div class="form-group row">
+                            <label class="col-4 col-form-label text-primary text-right">
+                                이름 </label>
+                            <input type="text" class="border-primary form-control col-4"
+                                   value="${m.name}" readonly>
+                        </div> <!-- 이름 -->
+
+                        <div class="form-group row">
+                            <label class="col-4 col-form-label text-primary text-right">
+                                이메일 </label>
+                            <input type="text" class="border-primary form-control col-4"
+                                   value="${m.email}" readonly>
+                        </div> <!-- 이메일 -->
+
+                        <div class="form-group row">
+                            <label class="col-4 col-form-label text-primary text-right">
+                                휴대폰번호 </label>
+                            <input type="text" class="border-primary form-control col-4"
+                                   value="${m.cellphone}" readonly>
+                        </div> <!-- 핸드폰번호 -->
+
+                        <div class="form-group row">
+                            <label class="col-4 col-form-label text-primary text-right">
+                                가입일 </label>
+                            <input type="text" class="border-primary form-control col-4"
+                                   value="${m.regdate}" readonly>
+                        </div> <!-- 가입일 -->
 
                 </div>
             </div>
