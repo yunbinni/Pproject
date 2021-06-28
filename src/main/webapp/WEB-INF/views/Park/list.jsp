@@ -317,10 +317,12 @@
                             <button class="btn btn-sm btn-primary m-1" style="height: 30px">민영</button>
                         </c:if>
                         <c:if test="${p.onedaypassfee ne null}">
-                            <button class="btn btn-sm btn-info m-1" style="height: 30px">1일 : ₩${p.onedaypassfee}</button>
+                            <fmt:formatNumber var="onedaypassfee" value="${p.onedaypassfee}" pattern="#,###" />
+                            <button class="btn btn-sm btn-info m-1" style="height: 30px">1일 : ₩${onedaypassfee}</button>
                         </c:if>
                         <c:if test="${p.monthpassfee ne null}">
-                            <button class="btn btn-sm btn-info m-1" style="height: 30px">월 : ₩${p.monthpassfee}</button>
+                            <fmt:formatNumber var="monthpassfee" value="${p.monthpassfee}" pattern="#,###" />
+                            <button class="btn btn-sm btn-info m-1" style="height: 30px">월 : ₩${monthpassfee}</button>
                         </c:if>
                         <c:if test="${p.payment ne null}">
                             <button class="btn btn-sm btn-warning m-1" style="height: 30px">결제방법 : ${p.payment}</button>

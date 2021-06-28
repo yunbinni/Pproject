@@ -24,30 +24,28 @@ $.get("/data/Park.json", function(data) {
     // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
     var markers = $(data.positions).map(function(i, position) {
 
-        if(position.소재지도로명주소 != null && position.소재지도로명주소.toString().includes( $("#sido").val() + $("#addr").val() )) {
-            var marker = new kakao.maps.Marker({
-                position: new kakao.maps.LatLng(position.위도, position.경도),
-                clickable: true
-            });
+        var marker = new kakao.maps.Marker({
+            position: new kakao.maps.LatLng(position.위도, position.경도),
+            clickable: true
+        });
 
-            // 인포윈도 생성
-            var infowindow = new kakao.maps.InfoWindow({
-                content:
-                    '<div className="iwContent" style="border: 1px solid black; width: 254px; height: 112px">' +
-                    '<div className="iwTitle" style="font-size: 22px; text-align: center; height: 65px; line-height: 65px; border-bottom: 1px solid black">' +
-                    '<a href="https://map.kakao.com/link/search/' + position.주차장명.toString() + '" target="_blank">' + position.주차장명.toString() + '</a>' +
-                    '</div>' +
-                    '<div className="addfav" style="height: 48px; text-align: center; line-height: 48px"><a href="#">관심지역추가</a></div>' +
-                    '</div>',
-                removable: true
-            });
+        // 인포윈도 생성
+        var infowindow = new kakao.maps.InfoWindow({
+            content:
+                '<div className="iwContent" style="border: 1px solid black; width: 254px; height: 112px">' +
+                '<div className="iwTitle" style="font-size: 22px; text-align: center; height: 65px; line-height: 65px; border-bottom: 1px solid black">' +
+                '<a href="https://map.kakao.com/link/search/' + position.주차장명.toString() + '" target="_blank">' + position.주차장명.toString() + '</a>' +
+                '</div>' +
+                '<div className="addfav" style="height: 48px; text-align: center; line-height: 48px"><a href="#">관심지역추가</a></div>' +
+                '</div>',
+            removable: true
+        });
 
-            kakao.maps.event.addListener(marker, 'click', function () {
-                infowindow.open(map, marker);
-            });
+        kakao.maps.event.addListener(marker, 'click', function () {
+            infowindow.open(map, marker);
+        });
 
-            return marker;
-        }
+        return marker;
 
     });
 
@@ -504,6 +502,6 @@ $("#schbtn").on('click', function() {
         qry += "&card=" + card;
         qry += "&others" + others;
 
-        location.replace(qry);
+        location.href = qry;
     }
 })
