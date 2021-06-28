@@ -83,7 +83,6 @@
     <script src="https://kit.fontawesome.com/fbefdbe8db.js" crossorigin="anonymous"></script>
 
     <script src="/js/Park.js"></script>
-    <script src="/js/ParkFind.js"></script>
 
   </body>
 </html>
