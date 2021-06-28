@@ -33,7 +33,7 @@
 <!-- 네비게이션 바 -->
 <nav class="navbar navbar-expand navbar-dark bg-primary">
     <ul class="navbar-nav nav-fill w-100">
-        <li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+        <li class="nav-item"><a class="nav-link" href="/notice">공지사항</a></li>
         <li class="nav-item"><a class="nav-link" href="#">회원가입</a></li>
         <li class="nav-item"><a class="nav-link" href="#">커뮤니티</a></li>
         <li class="nav-item"><a class="nav-link" href="#">주차장찾기</a></li>
