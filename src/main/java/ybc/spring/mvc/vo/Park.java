@@ -23,7 +23,7 @@ public class Park {
     protected String addunithour;       // 추가단위시간
     protected String addunitfee;        // 추가단위요금
     protected String onedaypasshour;    // 1일주차권요금적용시간
-    protected String ondaypassfee;      // 1일주차권요금
+    protected String onedaypassfee;      // 1일주차권요금
     protected String monthpassfee;      // 월정기권요금
     protected String payment;           // 결제방법
     protected String detail;            // 특기사항
@@ -211,12 +211,12 @@ public class Park {
         this.onedaypasshour = onedaypasshour;
     }
 
-    public String getOndaypassfee() {
-        return ondaypassfee;
+    public String getOnedaypassfee() {
+        return onedaypassfee;
     }
 
-    public void setOndaypassfee(String ondaypassfee) {
-        this.ondaypassfee = ondaypassfee;
+    public void setOnedaypassfee(String onedaypassfee) {
+        this.onedaypassfee = onedaypassfee;
     }
 
     public String getMonthpassfee() {

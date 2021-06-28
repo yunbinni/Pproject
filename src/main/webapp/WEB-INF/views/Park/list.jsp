@@ -208,6 +208,44 @@
         </div>
     </div><hr>
 
+    <%-- 정기권 유무 --%>
+    <div class="form-group">
+        <input class="form-check-input" type="checkbox" value="" id="chkpass">
+        <label class="form-check-label" for="chkpass">정기권</label>
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-1">
+                <input class="form-check-input" type="checkbox" id="chkonedaypass" name="passthis" disabled>
+                <label class="form-check-label" for="chkonedaypass"><h5>1일정기권 발행</h5></label>
+            </div>
+            <div class="col-1">
+                <input class="form-check-input" type="checkbox" id="chkmonthpass" name="passthis" disabled>
+                <label class="form-check-label" for="chkmonthpass"><h5>월정기권 발행</h5></label>
+            </div>
+        </div>
+    </div><hr>
+
+    <%-- 결제방법 --%>
+    <div class="form-group">
+        <input class="form-check-input" type="checkbox" value="" id="chkpayment">
+        <label class="form-check-label" for="chkpayment">결제방법</label>
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-1">
+                <input class="form-check-input" type="checkbox" id="chkcash" name="paythis" disabled>
+                <label class="form-check-label" for="chkcash"><h5>현금가능</h5></label>
+            </div>
+            <div class="col-1">
+                <input class="form-check-input" type="checkbox" id="chkcard" name="paythis" disabled>
+                <label class="form-check-label" for="chkcard"><h5>카드가능</h5></label>
+            </div>
+            <div class="col-1">
+                <input class="form-check-input" type="checkbox" id="chkothers" name="paythis" disabled>
+                <label class="form-check-label" for="chkothers"><h5>기타</h5></label>
+            </div>
+        </div>
+    </div><hr>
+
     <%-- 검색버튼 --%>
     <div class="row justify-content-end">
         <button type="button" class="btn btn-primary" id="schbtn"><i class="fas fa-search"></i>검색하기</button>
@@ -241,7 +279,7 @@
 
                 <div class="row">
                     <%-- (평일, 토요일, 공휴일 운영여부를 보고 표기하기!) --%>
-                    <div class="col">
+                    <div class="col-4">
                         평일 : ${p.shour} ~ ${p.ehour} <br>
                         토요일 : ${p.satshour} ~ ${p.satehour} <br>
                         공휴일 : ${p.holshour} ~ ${p.holehour}
@@ -257,7 +295,15 @@
                         <c:if test="${p.gubun eq '민영'}">
                             <button class="btn btn-sm btn-primary m-1" style="height: 30px">민영</button>
                         </c:if>
-                        <button class="btn btn-sm btn-success m-1" style="height: 30px">지금가능!</button>
+                        <c:if test="${p.onedaypassfee ne null}">
+                            <button class="btn btn-sm btn-info m-1" style="height: 30px">1일 : ₩${p.onedaypassfee}</button>
+                        </c:if>
+                        <c:if test="${p.monthpassfee ne null}">
+                            <button class="btn btn-sm btn-info m-1" style="height: 30px">월 : ₩${p.monthpassfee}</button>
+                        </c:if>
+                        <c:if test="${p.payment ne null}">
+                            <button class="btn btn-sm btn-warning m-1" style="height: 30px">결제방법 : ${p.payment}</button>
+                        </c:if>
                     </div>
                 </div><hr>
             </div> <%-- 아이템 반복 --%>

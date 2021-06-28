@@ -84,6 +84,30 @@ $("#chkbuze").on('change', function() {
     }
 })
 
+// 정기권 체크박스
+$("#chkpass").on('change', function() {
+    if($("#chkpass").is(":checked")) {
+        $("input[name=passthis]").prop("disabled", false);
+        $("#chkonedaypass").prop("checked", true);
+    }
+    else {
+        $("input[name=passthis]").prop("checked", false);
+        $("input[name=passthis]").prop("disabled", true);
+    }
+})
+
+// 결제방법 체크박스
+$("#chkpayment").on('change', function() {
+    if($("#chkpayment").is(":checked")) {
+        $("input[name=paythis]").prop("disabled", false);
+        $("#chkcash").prop("checked", true);
+    }
+    else {
+        $("input[name=paythis]").prop("checked", false);
+        $("input[name=paythis]").prop("disabled", true);
+    }
+})
+
 // 운영시간에서 오전/오후 바뀌면 그에 따라 드롭다운 리스트 변경
 $("#ampmWeekday1").on('change', function() {
     var amhour =
@@ -336,13 +360,15 @@ $("#schbtn").on('click', function() {
     var chkbushour = $("#chkbushour");
     var chkgubun = $("#chkgubun");
     var chkbuze = $("#chkbuze");
-//
+    var chkpass = $("#chkpass");
+
     // 검색조건이 모순이지 않게 필터링
     if(
         chkaddr.is(":checked") == false  &&
         chkbushour.is(":checked") == false &&
         chkgubun.is(":checked") == false &&
-        chkbuze.is(":checked") == false
+        chkbuze.is(":checked") == false &&
+        chkpass.is(":checked") == false
     ) alert("최소 1개 이상의 조건을 선택하여 주시기 바랍니다.");
 
 
@@ -387,6 +413,13 @@ $("#schbtn").on('click', function() {
         var gubun = ''; if($("#chkgubun").is(":checked")) gubun = $("#chkpublic").is(":checked") ? "공영" : "민영";
         var buze = ''; if($("#chkbuze").is(":checked")) buze = $("#chkyes").is(":checked") ? "요일제" : "미시행";
 
+        var onedaypass = ''; if($("#chkonedaypass").is(":checked")) onedaypass = "yes";
+        var monthpass = ''; if($("#chkmonthpass").is(":checked")) monthpass = "yes";
+
+        var cash = ''; if($("#chkcash").is(":checked")) cash = "yes";
+        var card = ''; if($("#chkcard").is(":checked")) card = "yes";
+        var others = ''; if($("#chkothers").is(":checked")) others = "yes";
+
         var qry = "/Park/find";
 
         qry += "?addr=" + addr;
@@ -401,6 +434,11 @@ $("#schbtn").on('click', function() {
         qry += "&holiday=" + holiday;
         qry += "&gubun=" + gubun;
         qry += "&buze=" + buze;
+        qry += "&onedaypass=" + onedaypass;
+        qry += "&monthpass=" + monthpass;
+        qry += "&cash=" + cash;
+        qry += "&card=" + card;
+        qry += "&others" + others;
 
         location.href = qry;
     }

@@ -19,6 +19,12 @@
         <if test="holiday != ''">and busday like concat('%', '공휴일', '%')</if>
         <if test="gubun != ''">and gubun like concat('%', #{gubun}, '%')</if>
         <if test="buze != ''">and buze like concat('%', #{buze}, '%')</if>
+
+        <if test="onedaypass != ''">and onedaypassfee is not null</if>
+        <if test="monthpassfee != ''">and monthpassfee is not null</if>
+        <if test="cash != ''">and payment like concat('%', '현금', '%')</if>
+        <if test="card != ''">and payment like concat('%', '카드', '%')</if>
+        <if test="others != ''">and payment like concat('%', '', '%')</if>
     </select>
 
     <select id="selectCnt" statementType="PREPARED" parameterType="map" resultType="int">
@@ -38,6 +44,12 @@
         <if test="holiday != ''">and busday like concat('%', '공휴일', '%')</if>
         <if test="gubun != ''">and gubun like concat('%', #{gubun}, '%')</if>
         <if test="buze != ''">and buze like concat('%', #{buze}, '%')</if>
+
+        <if test="onedaypass != ''">and onedaypassfee is not null</if>
+        <if test="monthpassfee != ''">and monthpassfee is not null</if>
+        <if test="cash != ''">and payment like concat('%', '현금', '%')</if>
+        <if test="card != ''">and payment like concat('%', '카드', '%')</if>
+        <if test="others != ''">and payment like concat('%', '', '%')</if>
     </select>
 
 </mapper>

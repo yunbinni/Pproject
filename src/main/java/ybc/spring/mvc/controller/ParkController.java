@@ -18,10 +18,10 @@ public class ParkController {
 
     // 주차장 검색 기능 구현
     @GetMapping("Park/find")
-    public ModelAndView find(ModelAndView mv, String addr, String shour, String ehour, String satshour, String satehour, String holshour, String holehour, String weekday, String saturday, String holiday, String gubun, String buze) {
+    public ModelAndView find(ModelAndView mv, String addr, String shour, String ehour, String satshour, String satehour, String holshour, String holehour, String weekday, String saturday, String holiday, String gubun, String buze, String onedaypass, String monthpass, String cash, String card, String others) {
         mv.setViewName("Park/list.tiles");
-        mv.addObject("parks", psrv.readPark(addr, shour, ehour, satshour, satehour, holshour, holehour, weekday, saturday, holiday, gubun, buze));
-        mv.addObject("pcnt", psrv.countPark(addr, shour, ehour, satshour, satehour, holshour, holehour, weekday, saturday, holiday, gubun, buze));
+        mv.addObject("parks", psrv.readPark(addr, shour, ehour, satshour, satehour, holshour, holehour, weekday, saturday, holiday, gubun, buze, onedaypass, monthpass, cash, card, others));
+        mv.addObject("pcnt", psrv.countPark(addr, shour, ehour, satshour, satehour, holshour, holehour, weekday, saturday, holiday, gubun, buze, onedaypass, monthpass, cash, card, others));
         return mv;
     }
 }
