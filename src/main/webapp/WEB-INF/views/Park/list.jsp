@@ -299,7 +299,7 @@
                 <h5>${p.addr1} (${p.telephone})</h5>
 
                 <div class="row">
-                    <%-- (평일, 토요일, 공휴일 운영여부를 보고 표기하기!) --%>
+                        <%-- (평일, 토요일, 공휴일 운영여부를 보고 표기하기!) --%>
                     <div class="col-4">
                         평일 : ${p.shour} ~ ${p.ehour} <br>
                         토요일 : ${p.satshour} ~ ${p.satehour} <br>
