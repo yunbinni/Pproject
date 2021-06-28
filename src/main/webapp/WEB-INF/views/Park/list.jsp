@@ -13,9 +13,30 @@
 <div>
     <%-- 주소 --%>
     <div class="form-group">
-        <input class="form-check-input" type="checkbox" id="chkaddr">
-        <label class="form-check-label" for="chkaddr">주소</label>
-        <input type="text" class="form-control" id="addr" placeholder="도로명주소 또는 지번주소를 입력하여 주십시오." readonly>
+        주소
+        <div class="row">
+            <select class="form-control col-3" id="sido">
+                <option value="no">시/도 선택</option>
+                <option>서울특별시</option>
+                <option>부산광역시</option>
+                <option>대구광역시</option>
+                <option>인천광역시</option>
+                <option>광주광역시</option>
+                <option>대전광역시</option>
+                <option>울산광역시</option>
+                <option>세종특별자치시</option>
+                <option>경기도</option>
+                <option>강원도</option>
+                <option>충청북도</option>
+                <option>충청남도</option>
+                <option>전라북도</option>
+                <option>전라남도</option>
+                <option>경상북도</option>
+                <option>경상남도</option>
+                <option>제주특별자치도</option>
+            </select>
+            <input type="text" class="form-control col-9" id="addr" placeholder="시/도 이후의 도로명주소 또는 지번주소를 입력하여 주십시오.">
+        </div>
     </div><hr>
 
     <%-- 운영시간 --%>

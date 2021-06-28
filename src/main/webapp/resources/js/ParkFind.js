@@ -1,9 +1,4 @@
 // 폼에서 체크여부에 따라 변경가능여부 바꾸기
-// 주소
-$("#chkaddr").on('change', function () {
-    if($("#chkaddr").is(":checked") == true) $("#addr").prop("readonly", false);
-    else $("#addr").prop("readonly", true);
-})
 
 // 운영시간 체크박스
 $("#chkbushour").on('change', function() {
@@ -357,7 +352,7 @@ $("#chkno").on('change', function() {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 다른 파일로 값을 보낼 땐 함수화
 $("#schbtn").on('click', function() {
-    var chkaddr = $("#chkaddr");
+
     var chkbushour = $("#chkbushour");
     var chkgubun = $("#chkgubun");
     var chkbuze = $("#chkbuze");
@@ -365,16 +360,12 @@ $("#schbtn").on('click', function() {
 
     // 검색조건이 모순이지 않게 필터링
     if(
-        chkaddr.is(":checked") == false  &&
-        chkbushour.is(":checked") == false &&
+        $("#sido").val() == 'no' &&
+        (chkbushour.is(":checked") == false &&
         chkgubun.is(":checked") == false &&
         chkbuze.is(":checked") == false &&
-        chkpass.is(":checked") == false
+        chkpass.is(":checked") == false)
     ) alert("최소 1개 이상의 조건을 선택하여 주시기 바랍니다.");
-
-
-    else if (chkaddr.is(":checked") == true && $("#addr").val().length < 2)
-        alert("주소창에 2글자 이상 작성하여 주시기 바랍니다.");
 
     else if ($("#chkweekday").is(":checked") == true && $("#anytime1").is(":checked") == false &&
         parseInt($("#ampmWeekday1").next().val().substr(0, 2)) >= parseInt($("#ampmWeekday2").next().val().substr(0, 2)))
@@ -406,7 +397,6 @@ $("#schbtn").on('click', function() {
             holehour = $("#ampmHoliday2").next().val();
         }
 
-
         var weekday = ''; if($("#chkweekday").is(":checked")) weekday = "yes";
         var saturday = ''; if($("#chksaturday").is(":checked")) saturday = "yes";
         var holiday = ''; if($("#chkholiday").is(":checked")) holiday = "yes";
@@ -423,7 +413,7 @@ $("#schbtn").on('click', function() {
 
         var qry = "/Park/find";
 
-        qry += "?addr=" + addr;
+        qry += "?addr=" + $("#sido").val() + addr;
         qry += "&shour=" + shour;
         qry += "&ehour=" + ehour;
         qry += "&satshour=" + satshour;
@@ -441,8 +431,6 @@ $("#schbtn").on('click', function() {
         qry += "&card=" + card;
         qry += "&others" + others;
 
-        console.log($("#addr").val());
-
-        location.href = qry;
+        location.replace(qry);
     }
 })
