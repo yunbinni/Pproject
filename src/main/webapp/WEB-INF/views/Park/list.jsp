@@ -337,31 +337,32 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
 <script src="/js/Park.js"></script>
 <script>
-    var marker = null; var infowindow = null;
-
+    var markers = []; var infowindows = [];
     <c:forEach var="p" items="${parks}">
-        marker = new kakao.maps.Marker({
-            position: new kakao.maps.LatLng( ${p.lng}, ${p.lat} )
-        });
+        markers.push(new kakao.maps.Marker({
+            position: new kakao.maps.LatLng(${p.lng}, ${p.lat})
+        }))
 
-        infowindow = new kakao.maps.InfoWindow({
-            position: new kakao.maps.LatLng( ${p.lng}, ${p.lat} ),
+        infowindows.push(new kakao.maps.InfoWindow({
+            position: new kakao.maps.LatLng(${p.lng}, ${p.lat}),
             content:
                 '<div className="iwContent" style="border: 1px solid black; width: 254px; height: 112px">' +
                 '<div className="iwTitle" style="font-size: 22px; text-align: center; height: 65px; line-height: 65px; border-bottom: 1px solid black">' +
-                '<a href="https://map.kakao.com/link/search/' + '${p.name}' + '" target="_blank">' + '${p.name}' + '</a>' +
+                '<a href="https://map.kakao.com/link/search/' + '${p.name}주차장' + '" target="_blank">' + '${p.name}' + '</a>' +
                 '</div>' +
                 '<div className="addfav" style="height: 48px; text-align: center; line-height: 48px"><a href="#">관심지역추가</a></div>' +
                 '</div>',
             removable: true
-        });
-
-        kakao.maps.event.addListener(marker, 'click', function () {
-            infowindow.open(map, marker);
-        });
-
-        clusterer.addMarker(marker);
+        }))
     </c:forEach>
+
+    for(let i = 0; i < infowindows.length; i++) {
+        kakao.maps.event.addListener(markers[i], 'click', function () {
+            infowindows[i].open(map, markers[i]);
+        });
+    }
+
+    clusterer.addMarkers(markers);
 
     map.setCenter(marker.getPosition());
 </script>
