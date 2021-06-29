@@ -13,8 +13,8 @@
 <div>
     <%-- 주소 --%>
     <div class="form-group">
-        주소
-        <div class="row">
+        주소 (필수)
+        <div class="row mt-1">
             <select class="form-control col-3" id="sido">
                 <option value="no">시/도 선택</option>
                 <option>서울특별시</option>
@@ -318,11 +318,11 @@
                         </c:if>
                         <c:if test="${p.onedaypassfee ne null}">
                             <fmt:formatNumber var="onedaypassfee" value="${p.onedaypassfee}" pattern="#,###" />
-                            <button class="btn btn-sm btn-info m-1" style="height: 30px">1일 : ₩${onedaypassfee}</button>
+                            <button class="btn btn-sm btn-info m-1" style="height: 30px">1일 : ₩${onedaypassfee}원</button>
                         </c:if>
                         <c:if test="${p.monthpassfee ne null}">
                             <fmt:formatNumber var="monthpassfee" value="${p.monthpassfee}" pattern="#,###" />
-                            <button class="btn btn-sm btn-info m-1" style="height: 30px">월 : ₩${monthpassfee}</button>
+                            <button class="btn btn-sm btn-info m-1" style="height: 30px">월 : ₩${monthpassfee}원</button>
                         </c:if>
                         <c:if test="${p.payment ne null}">
                             <button class="btn btn-sm btn-warning m-1" style="height: 30px">결제방법 : ${p.payment}</button>
@@ -333,3 +333,34 @@
         </c:forEach>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+<script src="/js/Park.js"></script>
+<script>
+    var marker = null; var infowindow = null;
+    <c:forEach var="p" items="${parks}">
+        marker = new kakao.maps.Marker({
+            position: new kakao.maps.LatLng( ${p.lng}, ${p.lat} )
+        });
+
+        // 인포윈도 생성
+        infowindow = new kakao.maps.InfoWindow({
+            position: new kakao.maps.LatLng( ${p.lng}, ${p.lat} ),
+            content:
+                '<div className="iwContent" style="border: 1px solid black; width: 254px; height: 112px">' +
+                '<div className="iwTitle" style="font-size: 22px; text-align: center; height: 65px; line-height: 65px; border-bottom: 1px solid black">' +
+                '<a href="https://map.kakao.com/link/search/' + '${p.name}' + '" target="_blank">' + '${p.name}' + '</a>' +
+                '</div>' +
+                '<div className="addfav" style="height: 48px; text-align: center; line-height: 48px"><a href="#">관심지역추가</a></div>' +
+                '</div>',
+            removable: true
+        });
+
+        kakao.maps.event.addListener(marker, 'click', function () {
+            infowindow.open(map, marker);
+        });
+
+        clusterer.addMarker(marker);
+    </c:forEach>
+    map.setCenter(marker.getPosition());
+</script>
