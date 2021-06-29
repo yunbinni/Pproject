@@ -135,19 +135,7 @@ public class ReviewServiceImpl implements ReviewService {
         int snum = (Integer.parseInt(cp)-1)*30;
 
         return rvdao.selectReview(snum);
-    }
-
-    @Override
-    public List<Review> readReview(String cp, String ftype, String fkey) {
-        int snum = (Integer.parseInt(cp) - 1) * 30;
-
-        Map<String, Object> params = new HashMap<>();
-        params.put("snum", snum);
-        params.put("ftype", ftype);
-        params.put("fkey", fkey);
-
-        return rvdao.findSelectReview(params);
-    }
+    } // 검색없을때
 
     @Override
     public List<Review> readReview(String cp, String floc, String ftype, String fkey) {
@@ -159,8 +147,8 @@ public class ReviewServiceImpl implements ReviewService {
         params.put("ftype", ftype);
         params.put("fkey", fkey);
 
-        return rvdao.findSelectFReview(params);
-    } //loc filter
+        return rvdao.findSelectReview(params);
+    } // 검색 후 로케이션
 
     @Override
     public Review readOneReview(String rvno) {
@@ -184,13 +172,9 @@ public class ReviewServiceImpl implements ReviewService {
     } //numbers of posts(rvno)
 
     @Override
-    public int countReview(String loc, String ftype, String fkey) {
-        return rvdao.selectCountFReview();
-    }
-
-    @Override
-    public int countReview(String ftype, String fkey) {
+    public int countReview(String floc, String ftype, String fkey) {
         Map<String, Object> params = new HashMap<>();
+        params.put("floc", floc);
         params.put("ftype", ftype);
         params.put("fkey", fkey);
 

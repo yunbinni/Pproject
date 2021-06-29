@@ -6,3 +6,8 @@ a:hover {color:royalblue; text-decoration:none}
 
 
 .likescol {background-color: #fff; border: none}
+
+.sb li {
+    list-style: none;
+    padding: ;
+}

@@ -44,11 +44,6 @@ public class ReviewDAOImpl implements ReviewDAO {
     } // tot # of posts
 
     @Override
-    public List<Review> findSelectReview(Map<String, Object> param) {
-        return sqlSession.selectList("review.findSelect", param);
-    }
-
-    @Override
     public Review selectOneReview(String rvno) {
         return sqlSession.selectOne("review.selectOne", rvno);
     } // detailed post
@@ -69,11 +64,6 @@ public class ReviewDAOImpl implements ReviewDAO {
     }
 
     @Override
-    public int selectCountReview(Map<String, Object> param) {
-        return sqlSession.selectOne("review.findSelectCount", param);
-    } // cnt  with searching
-
-    @Override
     public int viewCountReview(String rvno) {
         return sqlSession.update("review.viewsReview", rvno);
     }
@@ -89,13 +79,13 @@ public class ReviewDAOImpl implements ReviewDAO {
     }
 
     @Override
-    public List<Review> findSelectFReview(Map<String, Object> params) {
-        return sqlSession.selectList("review.findFSelect");
+    public List<Review> findSelectReview(Map<String, Object> params) {
+        return sqlSession.selectList("review.findFSelect", params);
     }
 
     @Override
-    public int selectCountFReview() {
-        return sqlSession.selectOne("review.findFSelectCount");
+    public int selectCountReview(Map<String, Object> param) {
+        return sqlSession.selectOne("review.findFSelectCount", param);
     }
 
 

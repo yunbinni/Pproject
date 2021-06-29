@@ -11,17 +11,19 @@ $('#findtype').val('${param.findtype}')
     .prop('selected', true);
 
 //loc filter
-$('#findloc').on('change', function() {
-   const filtering = $(this).val();
+// $('#findloc').on('change', function() {
+//    const filtering = $(this).val();
+//
+//    if(filtering === "0") return (".result").show();
+//
+//    $(".result").hide().filter(function() {
+//       return filtering === $(this).find(".locf").text();
+//    }).show();
+//
+//    alert(filtering + "/" + (".result").show() + "/" + $(this).find(".locf").text());
+// });
 
-   if(filtering === "0") return (".result").show();
-
-   $(".result").hide().filter(function() {
-      return filtering === $(this).find(".locf").text()
-   }).show();
-});
-
-// search filter btn
+//search filter btn
 $('#findbtn').on('click', function() {
    if ($('#findkey').val()=='') alert('검색할 내용을 작성하세요')
    else {
@@ -30,9 +32,28 @@ $('#findbtn').on('click', function() {
       qry += "&findkey=" + $('#findkey').val() + "&cp=1";
       let url = '/review/find' + qry;
       location.href=url;
-   }
+    }
+      // else {
+   //    let qry = '?findloc=' + $('#findloc').val();
+   //    qry += '&findtype=' + $('#findtype').val();
+   //    qry += "&findkey=" + $('#findkey').val() + "&cp=1";
+   //    let url = '/review/findwf' + qry;
+   //    location.href=url;
+   // }
 });
 
+// search filter btn
+// $('#findbtn').on('click', function() {
+//    if ($('#findloc').on('change') && ($('#findkey').val()==''))
+//       alert('검색할 내용을 작성하세요');
+//    else {
+//       let qry = '?findloc=' + $('#findloc').val();
+//       qry += '&findtype=' + $('#findtype').val();
+//       qry += "&findkey=" + $('#findkey').val() + "&cp=1";
+//       let url = '/review/findwf' + qry;
+//       location.href=url;
+//    }
+// });
 
 //view.jsp
 //go2list btn

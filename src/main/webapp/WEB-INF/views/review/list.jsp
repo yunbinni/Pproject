@@ -133,7 +133,7 @@
                     <c:if test="${i le tp}"> <!-- i should be less than or equal tp -->
                         <c:if test="${i eq cp}">
                             <li class="page-item active">
-                                <a href=${pglink}"${i}" class="page-link">${i}</a></li>
+                                <a href="${pglink}${i}" class="page-link">${i}</a></li>
                         </c:if>
 
                         <c:if test="${i ne cp}">

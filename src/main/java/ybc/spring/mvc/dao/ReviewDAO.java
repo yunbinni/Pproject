@@ -14,20 +14,20 @@ public interface ReviewDAO {
     String readFnames(String rvno);
     String readFsizes(String rvno);
 
-    List<Review> selectReview(int snum);
-    List<Review> findSelectReview(Map<String, Object> param);
-    Review selectOneReview(String rvno);
+    Review selectOneReview(String rvno); //상세페이지
+
     String selectPrvrvno(String rvno);
     String selectNxtrvno(String rvno);
 
-    int selectCountReview();
-    int selectCountReview(Map<String, Object> param);
+    List<Review> selectReview(int snum); // 검색기능 없을때
+    int selectCountReview(); // 검색기능없을때
+
     int viewCountReview(String rvno); //views
 
     void updatelikes(String rvno);
     void updateNlikes(String rvno);
 
-    List<Review> findSelectFReview(Map<String, Object> params);
-    int selectCountFReview();
+    List<Review> findSelectReview(Map<String, Object> params);
+    int selectCountReview(Map<String, Object> param);
 }
 

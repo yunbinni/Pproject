@@ -39,7 +39,7 @@
                      where ${ftype} like concat('%', #{fkey}, '%') </if>
                 <if test="ftype == 'ttlcon'">
                      where title like concat('%', #{fkey}, '%') or
-                    contetns like concat('%', #{fkey}, '%')</if>
+                    contents like concat('%', #{fkey}, '%')</if>
         order by rvno desc limit #{snum}, 30
     </select>
 
@@ -108,26 +108,53 @@
     <select id="findFSelect" statementType="PREPARED"
             parameterType="map"
             resultType="ybc.spring.mvc.vo.Review">
-        select rvno, loc, title, userid, regdate, views, likes from review
-        <if test="loc == 'loc'">
-            <if test="ftype != 'ttlcon'" >
-                where ${ftype} like concat('%', #{fkey}, '%') </if>
-            <if test="ftype == 'ttlcon'">
-                where title like concat('%', #{fkey}, '%') or
-                contetns like concat('%', #{fkey}, '%')</if>
-        </if>
-        order by rvno desc limit #{snum}, 30
+        select
+               rvno,
+               loc,
+               title,
+               userid,
+               regdate,
+               views,
+               likes
+        from review
+
+            <if test="floc == 'null'">
+                <if test="ftype != 'ttlcon'">
+                    where ${ftype} like concat('%', #{fkey}, '%') </if>
+                <if test="ftype == 'ttlcon'">
+                    where title like concat('%', #{fkey}, '%') or
+                    contents like concat('%', #{fkey}, '%') </if>
+            </if>
+            <if test="floc != 'null'">
+                <if test="ftype != 'ttlcon'">
+                    where ${ftype} like concat('%', #{fkey}, '%') </if>
+                <if test="ftype == 'ttlcon'">
+                    where title like concat('%', #{fkey}, '%') or
+                    contents like concat('%', #{fkey}, '%') </if>
+                and loc = #{floc}
+            </if>
+            order by rvno desc limit #{snum}, 30
     </select>
 
     <select id="findFSelectCount" statementType="PREPARED"
             parameterType="map" resultType="int">
         select count(rvno) cnt from review
-        <if test="loc == 'loc'">
+
+        <if test="floc == 'null'">
             <if test="ftype != 'ttlcon'">
                 where ${ftype} like concat('%', #{fkey}, '%') </if>
             <if test="ftype == 'ttlcon'">
                 where title like concat('%', #{fkey}, '%') or
                 contents like concat('%', #{fkey}, '%') </if>
         </if>
+        <if test="floc != 'null'">
+            <if test="ftype != 'ttlcon'">
+                where ${ftype} like concat('%', #{fkey}, '%') </if>
+            <if test="ftype == 'ttlcon'">
+                where title like concat('%', #{fkey}, '%') or
+                contents like concat('%', #{fkey}, '%') </if>
+            and loc = #{floc}
+        </if>
     </select>
+
 </mapper>

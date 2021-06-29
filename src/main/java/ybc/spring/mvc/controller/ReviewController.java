@@ -54,22 +54,16 @@ public class ReviewController {
     } //next post
 
     @GetMapping("/review/find")
-    public ModelAndView find(ModelAndView mv, String cp,
+    public ModelAndView findwf(ModelAndView mv, String cp, String findloc,
                              String findtype, String findkey) {
 
-        mv.setViewName("review/list.tiles");
-        mv.addObject("rvs", rvsrv.readReview(cp, findtype, findkey));
-        mv.addObject("rvcnt", rvsrv.countReview(findtype, findkey));
 
-        return mv;
-    } //searching filter
+       if (findloc == null) findloc = "";
+       System.out.println(">>" + findtype + "/" + findkey + "/" + findloc);
 
-    @GetMapping("/review/findwf")
-    public ModelAndView findwloc(ModelAndView mv, String cp, String loc,
-                             String findtype, String findkey) {
         mv.setViewName("review/list.tiles");
-        mv.addObject("rvs", rvsrv.readReview(cp, loc, findtype, findkey));
-        mv.addObject("rvcnt", rvsrv.countReview(loc, findtype, findkey));
+        mv.addObject("rvs", rvsrv.readReview(cp, findloc, findtype, findkey));
+        mv.addObject("rvcnt", rvsrv.countReview(findloc, findtype, findkey));
 
         return mv;
     }
