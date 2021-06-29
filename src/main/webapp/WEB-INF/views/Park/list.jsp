@@ -338,12 +338,12 @@
 <script src="/js/Park.js"></script>
 <script>
     var marker = null; var infowindow = null;
+
     <c:forEach var="p" items="${parks}">
         marker = new kakao.maps.Marker({
             position: new kakao.maps.LatLng( ${p.lng}, ${p.lat} )
         });
 
-        // 인포윈도 생성
         infowindow = new kakao.maps.InfoWindow({
             position: new kakao.maps.LatLng( ${p.lng}, ${p.lat} ),
             content:
@@ -362,5 +362,6 @@
 
         clusterer.addMarker(marker);
     </c:forEach>
+
     map.setCenter(marker.getPosition());
 </script>
