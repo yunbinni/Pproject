@@ -16,6 +16,7 @@
 
     <!-- Font Awesome Icon-->
     <script src="https://kit.fontawesome.com/da8b95bff2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/notice.css" />
 
     <title>템플릿 title</title>
     </head>
@@ -86,6 +87,7 @@
     <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/fbefdbe8db.js" crossorigin="anonymous"></script>
     <script src="/js/board.js"></script>
+    <script src="/js/Park.js"></script>
 
   </body>
 </html>
