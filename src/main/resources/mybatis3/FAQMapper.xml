@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="FAQ">
+
+    <select id="FAQ" statementType="PREPARED"
+            parameterType="int"
+            resultType="ybc.spring.mvc.vo.FAQ">
+        select fno, title, contents from FAQ
+        order by fno desc limit #{snum}, 30
+    </select>
+
+    <select id="countFAQ" statementType="PREPARED"
+            resultType="int">
+        select count(fno) cnt from FAQ
+    </select>
+
+    <insert id="insertFAQ" statementType="PREPARED"
+            parameterType="ybc.spring.mvc.vo.FAQ">
+        insert into FAQ (title,contents)
+        values (#{title}, #{contents})
+    </insert>
+
+    <select id="selectFAQ" statementType="PREPARED"
+            parameterType="int"
+            resultType="ybc.spring.mvc.vo.FAQ">
+        select fno, title,contents  from FAQ
+        order by fno desc limit #{snum}, 30
+    </select>
+
+    <!-- 동적 질의문으로 검색 기능 구현 -->
+    <!-- 단, 컬럼명이나 테이블명에는 #{}가 아닌 ${}를 사용! -->
+    <select id="findSelect" statementType="PREPARED"
+            parameterType="map"
+            resultType="ybc.spring.mvc.vo.FAQ">
+        select fno, title, contents from FAQ
+        <if test="ftype != 'titcont'">
+            where ${ftype} like concat(#{fkey}, '%') </if>
+        <if test="ftype == 'titcont'">
+            where title like concat(#{fkey}, '%') or
+            contents like concat(#{fkey}, '%') </if>
+        order by fno desc limit #{snum}, 30
+    </select>
+
+
+    <select id="findSelectCount" statementType="PREPARED"
+            parameterType="map" resultType="int">
+        select count(fno) cnt from FAQ
+        <if test="ftype != 'titcont'">
+            where ${ftype} like concat(#{fkey}, '%') </if>
+        <if test="ftype == 'titcont'">
+            where title like concat(#{fkey}, '%') or
+            contents like concat(#{fkey}, '%') </if>
+    </select>
+</mapper>

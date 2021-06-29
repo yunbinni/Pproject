@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>    
+         pageEncoding="UTF-8"%>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 
 <!doctype html>
 <html lang="ko">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -14,6 +14,9 @@
     <!-- user define CSS -->
     <link rel="stylesheet" href="/css/join.css" />
     <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/QnA.css" />
+    <link rel="stylesheet" href="/css/board.css" />
+    <link rel="stylesheet" href="/css/notice.css" />
 
     <title>템플릿 title</title>
     </head>
@@ -45,38 +48,37 @@
                             <input type="text" 
                                    id="userid" name="userid"
                                    class="form-control col-5
+
                                           border-danger">
+                    </div>
+                    <div class="form-group row text-danger">
+                        <label class="col-form-label col-4  text-right" for="passwd">
+                            비밀번호</label>
+                        <input type="password"
+                               id="passwd" name="passwd"
+                               class="form-control col-5 border-danger">
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-4"></div>
+                        <div class="form-check">
+                            <input type="checkbox"
+                                   class="form-check-input">
+                            <label class="form-check-label text-warning">
+                                로그인 상태 유지</label>
                         </div>
-                        <div class="form-group row text-danger">
-                            <label class="col-form-label col-4  text-right" for="passwd">
-                                비밀번호</label>
-                            <input type="password" 
-                                   id="passwd" name="passwd"
-                                   class="form-control col-5 border-danger">
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-4"></div>
-                            <div class="form-check">
-                                <input type="checkbox"
-                                       class="form-check-input">
-                                <label class="form-check-label text-warning">
-                                    로그인 상태 유지</label>
-                            </div>                            
-                        </div>
-                    </form>
-                </div>
-                
-                <div class="modal-footer justify-content-center">
-                    <button type="button" id="loginbtn"
-                            class="btn btn-danger">로그인</button>
-                    <button type="button" 
-                            class="btn btn-warning">
-                        아이디/비밀번호 찾기</button>
-                </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer justify-content-center">
+                <button type="button" id="loginbtn"
+                        class="btn btn-danger">로그인</button>
+                <button type="button"
+                        class="btn btn-warning">
+                    아이디/비밀번호 찾기</button>
             </div>
         </div>
     </div>
-      
       
     <!-- jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
@@ -87,6 +89,9 @@
     <script src="/js/join.js"></script>
     <script src="/js/loginout.js"></script>
     <script src="/js/myinfo.js"></script>
+    <script src="/js/board.js"></script>
+    <script src="/js/Park.js"></script>
+    <script src="/js/QnA.js"></script>
 
-  </body>
+</body>
 </html>
