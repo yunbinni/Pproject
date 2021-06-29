@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+
+    <insert id="insertMember" statementType="PREPARED"
+            parameterType="ybc.spring.mvc.vo.Member">
+        insert into joinMEM
+            (name, userid, passwd, jumin, zipcode, addr1, addr2, email, cellphone,
+             hphone, pref)
+        values
+        (#{name}, #{userid}, #{passwd}, #{jumin}, #{zipcode}, #{addr1}, #{addr2}, #{email}, #{cellphone},
+         #{hphone}, #{pref})
+    </insert>
+
+    <!--select 문은 입력 뿐 아니라 출력을 받아야 하기 때문에 resultType을 지정해 주어야 함-->
+    <select id="selectZipcode" statementType="PREPARED" parameterType="String"
+            resultType="ybc.spring.mvc.vo.Zipcode">
+        select * from zipcode where DONG like #{dong}
+    </select>
+
+    <select id="checkUserid" statementType="PREPARED" parameterType="String"
+            resultType="int">
+        select count(userid) cnt from joinMEM where userid = #{userid}
+    </select>
+
+    <select id="checkLogin" statementType="PREPARED" parameterType="ybc.spring.mvc.vo.Member"
+            resultType="int">
+        select count(userid) cnt from joinMEM where userid = #{userid} and passwd = #{passwd}
+    </select>
+
+    <select id="selectOneMember" statementType="PREPARED"
+            parameterType="String" resultType="ybc.spring.mvc.vo.Member">
+        select * from joinMEM where userid = #{userid}
+    </select>
+
+
+</mapper>
