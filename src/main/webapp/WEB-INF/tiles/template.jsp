@@ -13,6 +13,8 @@
 
     <link rel="stylesheet" href="/css/base.css" />
     <link rel="stylesheet" href="/css/QnA.css" />
+    <link rel="stylesheet" href="/css/board.css" />
+    <link rel="stylesheet" href="/css/notice.css" />
 
     <title>parking service</title>
 </head>
@@ -75,15 +77,14 @@
         </div>
     </div>
 </div>
-
-
-<!-- jQuery and Bootstrap Bundle (includes Popper) -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-
-<!-- FontAwesome -->
-<script src="https://kit.fontawesome.com/fbefdbe8db.js" crossorigin="anonymous"></script>
-<script src="/js/QnA.js"></script>
+    <!-- jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/fbefdbe8db.js" crossorigin="anonymous"></script>
+    <script src="/js/board.js"></script>
+    <script src="/js/Park.js"></script>
+    <script src="/js/QnA.js"></script>
 
 </body>
 </html>
