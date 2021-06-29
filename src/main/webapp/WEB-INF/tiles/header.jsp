@@ -43,9 +43,9 @@
         <c:if test="${not empty UID}"><li class="nav-item"><a class="nav-link disabled" href="/join/agree">회원가입</a></li></c:if>
         <li class="nav-item"><a class="nav-link" href="/board/list?cp=1">커뮤니티</a></li>
         <li class="nav-item"><a class="nav-link" href="/Park/list">주차장찾기</a></li>
+        <li class="nav-item"><a class="nav-link" href="/review/list">리뷰</a></li>
         <c:if test="${not empty UID}"><li class="nav-item"><a class="nav-link" href="/join/myinfo">내 정보</a></li></c:if>
         <c:if test="${empty UID}"><li class="nav-item"><a class="nav-link disabled" href="/join/myinfo">내 정보</a></li></c:if>
         <li class="nav-item"><a class="nav-link" href="/QNA/QnAlist">문의사항</a></li>
-        <!-- 머지할때 -->
     </ul>
 </nav>

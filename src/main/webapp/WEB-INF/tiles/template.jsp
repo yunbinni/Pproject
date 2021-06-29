@@ -12,11 +12,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
     <!-- user define CSS -->
-    <link rel="stylesheet" href="/css/join.css" />
     <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/join.css" />
     <link rel="stylesheet" href="/css/QnA.css" />
     <link rel="stylesheet" href="/css/board.css" />
     <link rel="stylesheet" href="/css/notice.css" />
+    <link rel="stylesheet" href="/css/review.css" />
 
     <title>템플릿 title</title>
     </head>
@@ -85,13 +86,18 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/fbefdbe8db.js" crossorigin="anonymous"></script>
+    
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
+    <!-- JavaScript-->
     <script src="/js/join.js"></script>
     <script src="/js/loginout.js"></script>
     <script src="/js/myinfo.js"></script>
     <script src="/js/board.js"></script>
     <script src="/js/Park.js"></script>
     <script src="/js/QnA.js"></script>
+    <script src="/js/review.js"></script>
 
 </body>
 </html>
