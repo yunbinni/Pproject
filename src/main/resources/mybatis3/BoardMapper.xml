@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+
+    <select id="selectBoard" statementType="PREPARED"
+            parameterType="int"
+            resultType="ybc.spring.mvc.vo.Board">
+        select bdno, title, userid, regdate, views, likes from Pboard
+        order by bdno desc limit #{snum}, 20
+    </select>
+    
+    <select id="countBoard" statementType="PREPARED"
+            resultType="int">
+        select count(bdno) cnt from Pboard
+    </select>
+
+    <insert id="insertBoard" statementType="PREPARED"
+            parameterType="ybc.spring.mvc.vo.Board">
+        insert into Pboard(title, userid, contents)
+        values (#{title}, #{userid}, #{contents})
+    </insert>
+
+    <select id="selectOne" statementType="PREPARED"
+            parameterType="String" resultType="ybc.spring.mvc.vo.Board">
+        select * from Pboard where bdno = #{bdno}
+    </select>
+    
+    <update id="viewsBoard" statementType="PREPARED"
+            parameterType="String">
+        update Pboard set views = views + 1 where bdno = #{bdno}
+    </update>
+
+    <update id="thumbsupBoard" statementType="PREPARED"
+            parameterType="String">
+        update Pboard set likes = likes + 1 where bdno = #{bdno}
+    </update>
+
+
+    <select id="findSelect" statementType="PREPARED"
+            parameterType="map" resultType="ybc.spring.mvc.vo.Board">
+        select bdno, title, userid, regdate, views, likes from Pboard
+        <if test="ftype != 'titcont'">
+        where ${ftype} like concat('%', #{fkey}, '%')</if>
+        <if test="ftype == 'titcont'">
+        where title like concat('%', #{fkey}, '%') or contents like concat('%', #{fkey}, '%')</if>
+        order by bdno desc limit #{snum}, 20
+    </select>
+
+    <select id="findSelectCount" statementType="PREPARED"
+            parameterType="map" resultType="int">
+        select count(bdno) from Pboard
+        <if test="ftype != 'titcont'">
+            where ${ftype} like concat('%', #{fkey}, '%')</if>
+        <if test="ftype == 'titcont'">
+            where title = concat('%', #{fkey}, '%') or contents = concat('%', #{fkey}, '%')</if>
+    </select>
+
+    <update id="updateBoard" statementType="PREPARED"
+            parameterType="ybc.spring.mvc.vo.Board">
+        update Pboard set title = #{title}, contents = #{contents}
+        where bdno = #{bdno}
+    </update>
+
+    <delete id="deleteBoard" statementType="PREPARED"
+            parameterType="String">
+        delete from Pboard where bdno = #{bdno}
+    </delete>
+
+    <select id="selectViewBoard" statementType="PREPARED"
+            parameterType="int"
+            resultType="ybc.spring.mvc.vo.Board">
+        select bdno, title, userid, regdate, views, likes from Pboard
+        order by views desc limit #{snum}, 20
+    </select>
+
+    <select id="selectThumbsBoard" statementType="PREPARED"
+            parameterType="int"
+            resultType="ybc.spring.mvc.vo.Board">
+        select bdno, title, userid, regdate, views, likes from Pboard
+        order by likes desc limit #{snum}, 20
+    </select>
+
+</mapper>

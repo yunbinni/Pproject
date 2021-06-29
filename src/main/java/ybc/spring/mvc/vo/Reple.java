@@ -1,10 +1,28 @@
 package ybc.spring.mvc.vo;
 
 public class Reple {
+    protected String rno;
     protected String rpno;
+    protected String bdno;
     protected String userid;
     protected String contents;
     protected String regdate;
+
+    public String getBdno() {
+        return bdno;
+    }
+
+    public void setBdno(String bdno) {
+        this.bdno = bdno;
+    }
+
+    public String getRno() {
+        return rno;
+    }
+
+    public void setRno(String rno) {
+        this.rno = rno;
+    }
 
     public String getRpno() {
         return rpno;

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="QnA">
+    <!-- Mapper인터페이스란?
+    Mybatis 매핑XML에 기재된 SQL을 호출하기 위한 인터페이스이다
+     -->
+    <select id="QnA" statementType="PREPARED"
+            parameterType="int"
+            resultType="ybc.spring.mvc.vo.QnA">
+        select qno, title, userid, regdate, views, thumbup from QnA
+        order by qno desc limit #{snum}, 30
+    </select>
+
+    <select id="countQnA" statementType="PREPARED"
+            resultType="int">
+        select count(qno) cnt from QnA
+    </select>
+
+    <insert id="insertQnA" statementType="PREPARED"
+            parameterType="ybc.spring.mvc.vo.QnA">
+        insert into QnA (title, userid, contents)
+        values (#{title}, #{userid}, #{contents})
+    </insert>
+
+    <!-- 홈페이지에서 숫자보이고 싶은 컬럼 적기, 그다음 콘솔에서 작업 -->
+    <select id="selectQnA" statementType="PREPARED"
+            parameterType="int"
+            resultType="ybc.spring.mvc.vo.QnA">
+        select qno, title, userid, regdate, views, thumbup  from QnA
+        order by qno desc limit #{snum}, 30
+    </select>
+
+    <update id="viewsQnA" statementType="PREPARED"
+            parameterType="String">
+        update QnA set views = views + 1 where qno = #{qno}
+    </update>
+
+    <!-- 동적 질의문으로 검색 기능 구현 -->
+    <!-- 단, 컬럼명이나 테이블명에는 #{}가 아닌 ${}를 사용! -->
+    <select id="findSelect" statementType="PREPARED"
+            parameterType="map"
+            resultType="ybc.spring.mvc.vo.QnA">
+        select qno, title, userid, contents from QnA
+        <if test="ftype != 'titcont'">
+            where ${ftype} like concat(#{fkey}, '%') </if>
+        <if test="ftype == 'titcont'">
+            where title like concat(#{fkey}, '%') or
+            contents like concat(#{fkey}, '%') </if>
+        order by qno desc limit #{snum}, 30
+    </select>
+
+
+    <select id="findSelectCount" statementType="PREPARED"
+            parameterType="map" resultType="int">
+        select count(qno) cnt from QnA
+        <if test="ftype != 'titcont'">
+            where ${ftype} like concat(#{fkey}, '%') </if>
+        <if test="ftype == 'titcont'">
+            where title like concat(#{fkey}, '%') or
+            contents like concat(#{fkey}, '%') </if>
+    </select>
+</mapper>

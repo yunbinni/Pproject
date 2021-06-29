@@ -3,14 +3,17 @@ package ybc.spring.mvc.vo;
 public class Member {
     protected String mno;
     protected String name;
-    protected String birth;
     protected String userid;
     protected String passwd;
+    protected String jumin;
     protected String zipcode;
+    protected String addr1;
+    protected String addr2;
     protected String email;
-    protected String favorite1;
-    protected String favorite2;
-    protected String favorite3;
+    protected String cellphone;
+    protected String hphone;
+    protected String pref;
+    protected String regdate;
 
     public String getMno() {
         return mno;
@@ -26,14 +29,6 @@ public class Member {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getBirth() {
-        return birth;
-    }
-
-    public void setBirth(String birth) {
-        this.birth = birth;
     }
 
     public String getUserid() {
@@ -52,12 +47,36 @@ public class Member {
         this.passwd = passwd;
     }
 
+    public String getJumin() {
+        return jumin;
+    }
+
+    public void setJumin(String jumin) {
+        this.jumin = jumin;
+    }
+
     public String getZipcode() {
         return zipcode;
     }
 
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
+    }
+
+    public String getAddr1() {
+        return addr1;
+    }
+
+    public void setAddr1(String addr1) {
+        this.addr1 = addr1;
+    }
+
+    public String getAddr2() {
+        return addr2;
+    }
+
+    public void setAddr2(String addr2) {
+        this.addr2 = addr2;
     }
 
     public String getEmail() {
@@ -68,27 +87,35 @@ public class Member {
         this.email = email;
     }
 
-    public String getFavorite1() {
-        return favorite1;
+    public String getCellphone() {
+        return cellphone;
     }
 
-    public void setFavorite1(String favorite1) {
-        this.favorite1 = favorite1;
+    public void setCellphone(String cellphone) {
+        this.cellphone = cellphone;
     }
 
-    public String getFavorite2() {
-        return favorite2;
+    public String getHphone() {
+        return hphone;
     }
 
-    public void setFavorite2(String favorite2) {
-        this.favorite2 = favorite2;
+    public void setHphone(String hphone) {
+        this.hphone = hphone;
     }
 
-    public String getFavorite3() {
-        return favorite3;
+    public String getPref() {
+        return pref;
     }
 
-    public void setFavorite3(String favorite3) {
-        this.favorite3 = favorite3;
+    public void setPref(String pref) {
+        this.pref = pref;
+    }
+
+    public String getRegdate() {
+        return regdate;
+    }
+
+    public void setRegdate(String regdate) {
+        this.regdate = regdate;
     }
 }
