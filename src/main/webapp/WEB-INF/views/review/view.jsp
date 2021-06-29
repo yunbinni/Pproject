@@ -106,12 +106,14 @@
 
         <div class="row">
             <div class="col-5 offset-1">
-                <button type="button" class="btn btn-success btn-sm"
-                        id="editbtn" name="editbtn" style="color: white">
-                    <i class="fas fa-edit"></i> 수정</button>
-                <button type="button" class="btn btn-primary btn-sm"
-                        id="rmvbtn" name="rmvbtn">
-                    <i class="fas fa-trash"></i> 삭제</button>
+                <c:if test="${not empty UID and UID eq rv.userid}">
+                    <button type="button" class="btn btn-success btn-sm"
+                            id="editbtn" name="editbtn" style="color: white">
+                        <i class="fas fa-edit"></i> 수정</button>
+                    <button type="button" class="btn btn-primary btn-sm"
+                            id="rmvbtn" name="rmvbtn">
+                        <i class="fas fa-trash"></i> 삭제</button>
+                </c:if>
             </div>
 
             <div class="col-5 text-right">

@@ -60,7 +60,7 @@
                 <label for="userid"
                        class=" col-form-label text-right col-2">작성자</label>
                 <input type="text" id="userid" name="userid"
-                       class="border-primary form-control col-9" readonly>
+                       class="border-primary form-control col-9" readonly value="${UID}">
             </div> <!-- author -->
 
             <div class="form-group row">
